@@ -1,16 +1,12 @@
 #include "header.h"
 
-
-#define Nelements 2310
-#define Nclusters 6
-
 typedef struct Cluster{
 	int elemento;
 	struct Cluster *proximo;
 	struct Cluster *ultimo;
 }Cluster;
 
-Cluster **CreateSingletonClusters(void){
+Cluster **CreateSingletonClusters(int Nelements){
 	Cluster **singletonClusters = MALLOC(Cluster*,Nelements);
 	for(int i=0;i<Nelements;i++){
 		singletonClusters[i] = MALLOC(Cluster,1);
@@ -72,10 +68,11 @@ double AvgDistance(Cluster *cluster1,Cluster *cluster2,double **distancias){
 		iterateC1 = iterateC1->proximo;
 	}
 	distancia =distancia /  (ContagemDeElementos(cluster1) * ContagemDeElementos(cluster2));
+	return distancia;
 }
 
 //algoritmo super ineficiente, melhorar essa merda.
-double GetMinAverageWeight(Cluster **cluster,double **pesos,int *c1,int *c2){
+double GetMinAverageWeight(Cluster **cluster,double **pesos,int *c1,int *c2,int Nelements){
 	double minDist = 2;	
 	for(int i=0;i<Nelements;i++)
 		for(int j=0;j<Nelements;j++)
@@ -89,7 +86,7 @@ double GetMinAverageWeight(Cluster **cluster,double **pesos,int *c1,int *c2){
 }
 
 
-void AtualizarPesos(Cluster **clusters,double **pesos,double **distancias,int c1,int c2){
+void AtualizarPesos(Cluster **clusters,double **pesos,double **distancias,int c1,int c2,int Nelements){
 	Cluster *novo=clusters[c1];
 	int indiceNovo = c1;
 	int indiceRemovido = c2;
@@ -110,7 +107,7 @@ void AtualizarPesos(Cluster **clusters,double **pesos,double **distancias,int c1
 	
 }
 
-int *AgglomerativeClustering(Cluster **clusters,double **distancias){
+int *AgglomerativeClustering(Cluster **clusters,double **distancias,int Nelements){
 	int ite=0;
 	int c1,c2;
 	double **pesos=MALLOC(double*,Nelements);
@@ -119,12 +116,12 @@ int *AgglomerativeClustering(Cluster **clusters,double **distancias){
 		for(int j=0;j<Nelements;j++)
 			pesos[i][j]=distancias[i][j];
 	}
-	double minDist = GetMinAverageWeight(clusters,pesos,&c1,&c2);
+	double minDist = GetMinAverageWeight(clusters,pesos,&c1,&c2,Nelements);
 	while(minDist < 0.5){
 		ite++;
 		mergeClusters(clusters, c1, c2);
-		AtualizarPesos(clusters,pesos,distancias,c1,c2);
-		minDist = GetMinAverageWeight(clusters,pesos,&c1,&c2);
+		AtualizarPesos(clusters,pesos,distancias,c1,c2,Nelements);
+		minDist = GetMinAverageWeight(clusters,pesos,&c1,&c2,Nelements);
 	}
 	int *finalClustering = MALLOC(int,Nelements);
 	int cont=0;
@@ -138,18 +135,11 @@ int *AgglomerativeClustering(Cluster **clusters,double **distancias){
 			cont++;
 		}
 	}
-	printf("%d\n\n",ite);
 	return finalClustering;
 }
 
-double min(double v1,double v2){
-	if(v1 < v2)
-		return v1;
-	else
-		return v2;
-}
 
-void CalcularDistancias(int **ensemble,double **distancias){	
+void CalcularDistancias(int **ensemble,double **distancias,int Nelements,int Nclusters){	
 	for(int i=0;i<Nelements;i++)
 		for(int j=0;j<Nelements;j++){
 			double diferencas = 0;
@@ -163,9 +153,8 @@ void CalcularDistancias(int **ensemble,double **distancias){
 
 
 int main(){
-	
-	
-		
+	int Nelements,Nclusters;
+	scanf("%d%d",&Nelements,&Nclusters);
 	int **ensemble = MALLOC(int*,Nelements);
 	for(int i=0;i<Nelements;i++)
 		ensemble[i] = MALLOC(int,Nelements);
@@ -179,12 +168,12 @@ int main(){
 	for(int i=0;i<Nelements;i++)
 		distancias[i] = MALLOC(double,Nelements);
 		
-	CalcularDistancias(ensemble,distancias);		
+	CalcularDistancias(ensemble,distancias,Nelements,Nclusters);		
 	
 		
-	Cluster **clusterings = CreateSingletonClusters();
+	Cluster **clusterings = CreateSingletonClusters(Nelements);
 	
-	int *results = AgglomerativeClustering(clusterings,distancias);
+	int *results = AgglomerativeClustering(clusterings,distancias,Nelements);
 	for(int i=0;i<Nelements;i++)
 		printf("%d ",results[i]);
 	printf("\n");
