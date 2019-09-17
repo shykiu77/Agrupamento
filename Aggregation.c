@@ -1,4 +1,4 @@
-#include "header.h"
+#include "ensemble.h"
 
 typedef struct Cluster{
 	int elemento;
@@ -155,7 +155,7 @@ void CalcularDistancias(int **ensemble,double **distancias,int Nelements,int Ncl
 int main(){
 	int Nelements,Nclusters;
 	scanf("%d%d",&Nelements,&Nclusters);
-	int **ensemble = MALLOC(int*,Nelements);
+	int **ensemble = MALLOC(int*,Nclusters);
 	for(int i=0;i<Nelements;i++)
 		ensemble[i] = MALLOC(int,Nelements);
 	
