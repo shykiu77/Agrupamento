@@ -1,2 +1,2 @@
-Para compilar, digite make. Certifique-se que as pastas Bin Entradas e Saidas existem.
+Para compilar, digite make.
 Para rodar: Bin/ensemble --help 
