@@ -5,7 +5,7 @@ int main(int argc,char **argv){
     int Nelements,Nclusters;
 	scanf("%d%d",&Nelements,&Nclusters);
     int **ensemble = MALLOC(int*,Nclusters);
-	for(int i=0;i<Nelements;i++)
+	for(int i=0;i<Nclusters;i++)
 		ensemble[i] = MALLOC(int,Nelements);
 	
 	for(int i=0;i<Nclusters;i++)
