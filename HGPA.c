@@ -1,7 +1,7 @@
 #include "ensemble.h"
 
 #define NHYPEREDGESMAX 1000
-
+#define UBfactor "5"
 
 typedef struct Node{
     struct Node *proximo;
@@ -37,13 +37,13 @@ Queue *InsertNode(int vertice, Queue *queue){
     return queue;
 }
 
-void PrintQueue(Queue *queue){
+void PrintQueue(Queue *queue,FILE *pontFile){
     Node *ite = queue->head;
     while(ite != NULL){
-        printf("%d ",ite->vertice);
+        fprintf(pontFile,"%d ",ite->vertice);
         ite = ite->proximo;
     }
-    printf("\n");
+    fprintf(pontFile,"\n");
 }
 
 int main(int argc,char **argv){
@@ -90,28 +90,24 @@ int main(int argc,char **argv){
         if(saida[i]->head == NULL)
             NhyperEdgesTotal--;
     }
-    printf("%d %d\n",NhyperEdgesTotal,Nelements);
-    for(int i=1;i<=NhyperEdgesTotal;i++)
-        if(saida[i]->head != NULL)
-            PrintQueue(saida[i]);
+   
+    
     
 
-    /*char datasetName[20];
+    char datasetName[20];
     scanf("%s",datasetName);
     char fileOutput[40];
-    strcpy(fileOutput,"Saidas/");
+
+    //TODO: generalizar saidas.
+    strcpy(fileOutput,"Saidas/Wine/HGPA.");
     strcat(fileOutput,datasetName);
 
     FILE *pontFile = fopen(fileOutput,"w");
     if(fileOutput){
-        fprintf(pontFile,"%d %d 001\n",Nvertices,Narestas);
-        for(int i=0;i<Nvertices;i++){
-            for(int j=0;j<Nvertices;j++)
-                if(i!=j && peso[i][j]!=0 )
-                    fprintf(pontFile,"%d %d ",j+1,peso[i][j]);
-            
-            fprintf(pontFile,"\n");
-        }
+        fprintf(pontFile,"%d %d\n",NhyperEdgesTotal,Nelements);
+        for(int i=1;i<=NhyperEdgesTotal;i++)
+        if(saida[i]->head != NULL)
+            PrintQueue(saida[i],pontFile);
         fclose(pontFile);
     }
     else{
@@ -120,8 +116,8 @@ int main(int argc,char **argv){
     }
 
     
-    printf("Se você esta vendo essa mensagem então provavelmente não tem o metis instalado\n");
-    execl("/usr/bin/gpmetis","gpmetis","-ptype=rb",fileOutput,argv[1],NULL);*/
+    printf("Se você esta vendo essa mensagem então provavelmente não tem o shmetis instalado\n");
+    execl("Bin/shmetis","shmetis",fileOutput,argv[1],UBfactor,NULL);
     
     return 0;
 }
