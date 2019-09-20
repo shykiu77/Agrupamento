@@ -33,7 +33,8 @@ int main(int argc,char **argv){
     char datasetName[20];
     scanf("%s",datasetName);
     char fileOutput[40];
-    strcpy(fileOutput,"Saidas/");
+    //TODO: generalizar saida
+    strcpy(fileOutput,"Saidas/Wine/CSPA.");
     strcat(fileOutput,datasetName);
 
     FILE *pontFile = fopen(fileOutput,"w");
