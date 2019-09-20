@@ -1,0 +1,1 @@
+//TODO: funções de avaliação de agrupamento.
