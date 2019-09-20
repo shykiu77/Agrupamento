@@ -6,17 +6,18 @@
 #define HELP 0
 #define CSPA 1
 #define AGGREGATION 2
+#define HGPA 3
 
 #define STRCMP(a,b) strcmp(a,b) == 0
 
 void PrintMoreInfo(){
-    printf("The CSPA algorithm requires the number of clusters to be stated after the file path\n");
+    printf("The CSPA and HGPA algorithms require the number of clusters to be stated after the file path\n");
 }   
 
 void PrintArgs(){
     printf("-a, --Aggregation\tUses the Aggregation algorithm\n");
     printf("-c, --CSPA\t\tUses the CSPA algorithm\n");
-
+    printf("-h, --HGPA\t\tUses the HGPA algorithm\n");
     printf("\n");
 
     PrintMoreInfo();
@@ -35,6 +36,8 @@ int ReadAlgorithm(char *arg){
         return AGGREGATION;
     if(STRCMP(arg,"-c") || STRCMP(arg,"--CSPA"))
         return CSPA;
+    if(STRCMP(arg,"-h") || STRCMP(arg,"--HGPA"))
+        return HGPA;
     if(STRCMP(arg,"--help"))
         return HELP;
     return -1;
@@ -68,6 +71,14 @@ void Run(int algorithm,int argc,char **argv){
                 return;
             }
             strcat(program,"CSPA ");
+            strcat(program,argv[3]);
+            break;
+        case HGPA:
+            if(argc < 4){
+                Error(INVALIDARGNUM,NULL);
+                return;
+            }
+            strcat(program,"HGPA ");
             strcat(program,argv[3]);
             break;
         case AGGREGATION:
