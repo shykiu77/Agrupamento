@@ -2,7 +2,10 @@ SRCS = $(wildcard *.c)
 
 PROGS = $(patsubst %.c,%,$(SRCS))
 
-all: $(PROGS)
+all: criar $(PROGS)
+
+criar:
+	mkdir -p Bin && mkdir -p Entradas && mkdir -p Saidas
 
 %: %.c
 	$(CC) $(CFLAGS)  -o Bin/$@ $<
