@@ -9,3 +9,4 @@
 #define CALLOC(t,n) (t*)calloc(sizeof(t),n)
 
 #define MIN(x,y) x<y ? x : y
+#define MAX(x,y) x>y ? x : y
