@@ -1,5 +1,128 @@
-//TODO: funções de avaliação de agrupamento.
+#include "ensemble.h"
 
-int main(){
+
+double recall(int *apriori,int *clustering,int Nelements,int i,int j){
+    unsigned int nij=0;
+	unsigned int ni=0;
+
+	for(unsigned int k=0; k<Nelements; k++)
+		if(apriori[k] == i && clustering[k] == j)
+			nij++;
+	
+	for(unsigned int k=0; k<Nelements; k++)
+			if(apriori[k]==i)
+				ni++;
+
+	if(ni == 0 )
+		return 0;
+
+	return (double) nij/ni;
+}
+
+double precision(int *apriori,int *clustering,int Nelements,int i,int j){
+    unsigned int nij=0;
+	unsigned int nj=0;
+
+	for(unsigned int k=0; k<Nelements; k++)
+		if(apriori[k] == i && clustering[k] == j)
+			nij++;
+	
+	for(unsigned int k=0; k<Nelements; k++)
+			if(clustering[k]==j)
+				nj++;
+
+	if(nj == 0 )
+		return 0;	
+
+	return (double) nij/nj;
+}
+double fmeasure(int *apriori,int *clustering,int Nelements,int i,int j){
+    double p=precision(apriori, clustering, Nelements, i,j);
+	double r=recall(apriori, clustering, Nelements, i ,j);
+	
+	if(p==0 || r==0)
+		return 0;
+
+	return (double) 2*(p*r)/(p+r);
+}
+
+double fmeasuret(int *apriori, int *clustering, int Nelements, int m, int k){
+
+	double f=0;
+	
+	unsigned int *count= (unsigned int *) malloc(sizeof(unsigned int)*k);
+	double *value = (double *) malloc (sizeof(double)*k);
+
+	for(unsigned int i=0; i<m; i++){
+		for(unsigned int j=0; j<k; j++)
+			value[j] = (double) fmeasure(apriori, clustering, Nelements, i, j);
+		
+		double max = value[0];
+		
+		for(unsigned int j=1; j<k; j++)
+			if(value[j] > max)
+				max = value[j];
+
+		for(unsigned int j=0; j<k; j++)
+			count[j]=0;
+	
+		for(unsigned int j=0; j<Nelements; j++){
+			count[apriori[j]]++;
+		}
+		
+		f+= (double) count[i]*max;		
+	}
+        free(value);
+        free(count);
+
+	return (double) f/Nelements;
+}
+
+double cr_index(int *apriori,int *clustering,int Nelements){
+    double a = 0.0, b = 0.0, c = 0.0, d = 0.0, p, cr;
+	for(unsigned int i = 0; i < Nelements-1; i++)
+        for(unsigned int j = (i+1); j < Nelements; j++){
+			if ((clustering[i] == clustering[j]) && (apriori[i] == apriori[j]))
+				a += 1.0;
+			if ((clustering[i] != clustering[j]) && (apriori[i] == apriori[j]))
+				b += 1.0;
+			if ((clustering[i] == clustering[j]) && (apriori[i] != apriori[j]))
+				c += 1.0;
+			if ((clustering[i] != clustering[j]) && (apriori[i] != apriori[j]))
+				d += 1.0;
+        }
+    p = a + b + c + d;
+    cr = ((a + d) - ((a + b) * (a + c) + (d + b) * (d + c)) * (1 / p)) / (p - ((a + b) * (a + c) + (d + b) * (d + c)) * (1 / p));
+    return cr;
+}
+
+
+//NOTA: Tanto os agrupamentos verdadeiros quanto os resultantes de um algoritmo devem começar de 0.
+int main(int argc, char **argv){
+    FILE *file1,*file2;
+    file1 = fopen(argv[2],"r");
+    file2 = fopen(argv[3],"r");
+    if(!(file1 && file2)){
+        printf("Não foi possível abrir um dos arquivos\n");
+        return 1;
+    }
+    int Nelements = atoi(argv[1]);
+    int apriori[Nelements],clustering[Nelements];
+    for(int i=0;i<Nelements;i++){
+        fscanf(file1,"%d",&apriori[i]);
+        fscanf(file2,"%d",&clustering[i]);
+    }
+    fclose(file1);
+    fclose(file2);
+
+    double fmeasure,nri;
+    int NclustersApriori=0,NclustersClustering=0;
+    for(int i=0;i<Nelements;i++){
+        NclustersApriori = MAX(NclustersApriori,apriori[i]);
+        NclustersClustering = MAX(NclustersClustering,clustering[i]);
+    }
+    fmeasure = fmeasuret(apriori,clustering,Nelements,NclustersApriori++,NclustersClustering++);
+    nri = cr_index(apriori,clustering,Nelements);
+    printf("Fmeasure: %lf\nNRI: %lf\n",fmeasure,nri);
     return 0;
 }
