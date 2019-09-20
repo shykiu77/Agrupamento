@@ -174,9 +174,18 @@ int main(){
 	Cluster **clusterings = CreateSingletonClusters(Nelements);
 	
 	int *results = AgglomerativeClustering(clusterings,distancias,Nelements);
-	for(int i=0;i<Nelements;i++)
-		printf("%d ",results[i]);
-	printf("\n");
+
+	FILE *filePont = fopen("Saidas/Wine/Aggregation.wine","w");
+	if(filePont){
+		for(int i=0;i<Nelements;i++)
+			fprintf(filePont,"%d ",results[i]);
+		fprintf(filePont,"\n");
+		fclose(filePont);
+	}
+	else{
+		printf("Não foi possível criar o arquivo de saída.\n");
+	}
+	return 0;
 }
 
 
