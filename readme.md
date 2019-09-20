@@ -1,2 +1,2 @@
-Para usar, compile CSPA.c, Aggregation.c e ensemble.c em binários na pasta Bin.
-Para executar um algoritmo, digite Bin/ensemble --help
+Para compilar, digite make. Certifique-se que as pastas Bin Entradas e Saidas existem.
+Para rodar: Bin/ensemble --help 
