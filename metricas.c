@@ -96,6 +96,51 @@ double cr_index(int *apriori,int *clustering,int Nelements){
     return cr;
 }
 
+double jaccard_index(int *apriori, int *clustering, int Nelements){
+	double a = 0.0, b = 0.0, c = 0.0, d = 0.0, p, j;
+	 for(unsigned int i = 0; i < Nelements-1; i++)
+        for(unsigned int j = (i+1); j < Nelements; j++){
+			if((clustering[i] == clustering[j]) && (apriori[i] == apriori[j]))
+                a += 1.0;
+            if((clustering[i] != clustering[j]) && (apriori[i] == apriori[j]))
+                b += 1.0;
+            if((clustering[i] == clustering[j]) && (apriori[i]!= apriori[j]))
+                c += 1.0;
+            if((clustering[i] != clustering[j]) && (apriori[i]!= apriori[j]))
+                d += 1.0;
+        }	
+    p = a + b + c;
+    j = a /p;
+    return j;
+}
+
+double purity_index(unsigned int *apriori, unsigned int *clustering, unsigned int Nelements, unsigned int k) {
+	unsigned int nij = 0;
+        double purity = 0;
+        double max=0;
+
+
+	for (unsigned int i = 0; i < k; i++) {
+            max=0;
+		for (unsigned int j = 0; j < k; j++){
+                        nij=0;
+			for (unsigned int z = 0; z < Nelements; z++)
+					if (apriori[z] == i && clustering[z] == j)
+						nij++;
+                        if(nij>max)
+                            max = nij;
+                }
+		
+                
+            purity+=max;
+	}
+
+	purity = (double) purity / Nelements;
+
+	return purity;
+}
+
+
 
 //NOTA: Tanto os agrupamentos verdadeiros quanto os resultantes de um algoritmo devem começar de 0.
 int main(int argc, char **argv){
@@ -115,14 +160,16 @@ int main(int argc, char **argv){
     fclose(file1);
     fclose(file2);
 
-    double fmeasure,nri;
+    double fmeasure,nri,jaccard,purity;
     int NclustersApriori=0,NclustersClustering=0;
     for(int i=0;i<Nelements;i++){
         NclustersApriori = MAX(NclustersApriori,apriori[i]);
         NclustersClustering = MAX(NclustersClustering,clustering[i]);
     }
-    fmeasure = fmeasuret(apriori,clustering,Nelements,NclustersApriori++,NclustersClustering++);
+    fmeasure = fmeasuret(apriori,clustering,Nelements,NclustersApriori+1,NclustersClustering+1);
     nri = cr_index(apriori,clustering,Nelements);
-    printf("Fmeasure: %lf\nNRI: %lf\n",fmeasure,nri);
+	jaccard = jaccard_index(apriori,clustering,Nelements);
+	purity = purity_index(apriori,clustering,Nelements,NclustersClustering+1);
+    printf("Fmeasure: %lf\nNRI: %lf\nJaccard index: %lf\npurity: %lf\n",fmeasure,nri,jaccard,purity);
     return 0;
 }
