@@ -1,4 +1,4 @@
 Para compilar, digite make.
 Para rodar: Bin/ensemble --help 
 
-Nota: Os agrupamentos devem começar de 0.
+Nota: Os agrupamentos podem começar tanto de 0 quanto de 1.
