@@ -1,5 +1,6 @@
 #include "ensemble.h"
 
+#define NCLUSTERSMAX 1000
 
 double recall(int *apriori,int *clustering,int Nelements,int i,int j){
     unsigned int nij=0;
@@ -50,20 +51,21 @@ double fmeasuret(int *apriori, int *clustering, int Nelements, int m, int k){
 
 	double f=0;
 	
-	unsigned int *count= (unsigned int *) malloc(sizeof(unsigned int)*k);
-	double *value = (double *) malloc (sizeof(double)*k);
+	unsigned int *count= (unsigned int *) malloc(sizeof(unsigned int)*k+1);
+	double *value = (double *) malloc (sizeof(double)*k+1);
 
-	for(unsigned int i=0; i<m; i++){
-		for(unsigned int j=0; j<k; j++)
+	for(unsigned int i=1; i<=m; i++){
+		for(unsigned int j=1; j<=k; j++)
 			value[j] = (double) fmeasure(apriori, clustering, Nelements, i, j);
 		
-		double max = value[0];
-		
-		for(unsigned int j=1; j<k; j++)
-			if(value[j] > max)
-				max = value[j];
 
-		for(unsigned int j=0; j<k; j++)
+		double max = -1;
+
+		for(unsigned int j=1; j<=k; j++)
+			max = MAX(max,value[j]);
+			
+
+		for(unsigned int j=1; j<=k; j++)
 			count[j]=0;
 	
 		for(unsigned int j=0; j<Nelements; j++){
@@ -96,6 +98,7 @@ double cr_index(int *apriori,int *clustering,int Nelements){
     return cr;
 }
 
+//ok
 double jaccard_index(int *apriori, int *clustering, int Nelements){
 	double a = 0.0, b = 0.0, c = 0.0, d = 0.0, p, j;
 	 for(unsigned int i = 0; i < Nelements-1; i++)
@@ -140,7 +143,23 @@ double purity_index(unsigned int *apriori, unsigned int *clustering, unsigned in
 	return purity;
 }
 
+int *normalize_clusters(int *cluster,int Nelements){
+	int *taken = CALLOC(int,NCLUSTERSMAX);
+	int *newCluster = MALLOC(int,Nelements);
 
+	int Nclusters = 0;
+
+	for(int i=0;i<Nelements;i++){
+		if( taken[cluster[i]] == 0 ){
+			newCluster[i] = taken[cluster[i]] = ++Nclusters;
+		}
+		else{
+			newCluster[i] = taken[cluster[i]];
+		}
+	}
+
+	return newCluster;
+}
 
 //NOTA: Tanto os agrupamentos verdadeiros quanto os resultantes de um algoritmo devem começar de 0.
 int main(int argc, char **argv){
@@ -152,7 +171,8 @@ int main(int argc, char **argv){
         return 1;
     }
     int Nelements = atoi(argv[1]);
-    int apriori[Nelements],clustering[Nelements];
+    int *apriori = MALLOC(int,Nelements);
+	int *clustering = MALLOC(int,Nelements);
     for(int i=0;i<Nelements;i++){
         fscanf(file1,"%d",&apriori[i]);
         fscanf(file2,"%d",&clustering[i]);
@@ -160,16 +180,22 @@ int main(int argc, char **argv){
     fclose(file1);
     fclose(file2);
 
-    double fmeasure,nri,jaccard,purity;
+	apriori = normalize_clusters(apriori,Nelements);
+	clustering = normalize_clusters(clustering,Nelements);
+
+	
+
+	
     int NclustersApriori=0,NclustersClustering=0;
     for(int i=0;i<Nelements;i++){
         NclustersApriori = MAX(NclustersApriori,apriori[i]);
         NclustersClustering = MAX(NclustersClustering,clustering[i]);
     }
-    fmeasure = fmeasuret(apriori,clustering,Nelements,NclustersApriori+1,NclustersClustering+1);
-    nri = cr_index(apriori,clustering,Nelements);
-	jaccard = jaccard_index(apriori,clustering,Nelements);
-	purity = purity_index(apriori,clustering,Nelements,NclustersClustering+1);
-    printf("Fmeasure: %lf\nNRI: %lf\nJaccard index: %lf\npurity: %lf\n",fmeasure,nri,jaccard,purity);
+
+    
+	double jaccard = jaccard_index(apriori,clustering,Nelements);
+	double fmeasure_index = fmeasuret(apriori,clustering,Nelements,NclustersApriori,NclustersClustering);
+	printf("jaccard: %lf\n",jaccard);
+	printf("fmeasure: %lf\n",fmeasure_index);
     return 0;
 }
