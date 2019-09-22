@@ -2,7 +2,7 @@
 
 #define NCLUSTERSMAX 1000
 
-double recall(int *apriori,int *clustering,int Nelements,int i,int j){
+double recall(unsigned int *apriori,unsigned int *clustering,unsigned int Nelements,unsigned int i,unsigned int j){
     unsigned int nij=0;
 	unsigned int ni=0;
 
@@ -20,7 +20,7 @@ double recall(int *apriori,int *clustering,int Nelements,int i,int j){
 	return (double) nij/ni;
 }
 
-double precision(int *apriori,int *clustering,int Nelements,int i,int j){
+double precision(unsigned int *apriori,unsigned int *clustering,unsigned int Nelements,unsigned int i,unsigned int j){
     unsigned int nij=0;
 	unsigned int nj=0;
 
@@ -37,7 +37,7 @@ double precision(int *apriori,int *clustering,int Nelements,int i,int j){
 
 	return (double) nij/nj;
 }
-double fmeasure(int *apriori,int *clustering,int Nelements,int i,int j){
+double fmeasure(unsigned int *apriori,unsigned int *clustering,unsigned int Nelements,unsigned int i,unsigned int j){
     double p=precision(apriori, clustering, Nelements, i,j);
 	double r=recall(apriori, clustering, Nelements, i ,j);
 	
@@ -47,11 +47,11 @@ double fmeasure(int *apriori,int *clustering,int Nelements,int i,int j){
 	return (double) 2*(p*r)/(p+r);
 }
 
-double fmeasuret(int *apriori, int *clustering, int Nelements, int m, int k){
+double fmeasuret(unsigned int *apriori, unsigned int *clustering, unsigned int Nelements, unsigned int m, unsigned int k){
 
 	double f=0;
 	
-	unsigned int *count= (unsigned int *) malloc(sizeof(unsigned int)*k+1);
+	unsigned int *count= (unsigned int *) malloc(sizeof(int)*k+1);
 	double *value = (double *) malloc (sizeof(double)*k+1);
 
 	for(unsigned int i=1; i<=m; i++){
@@ -80,7 +80,7 @@ double fmeasuret(int *apriori, int *clustering, int Nelements, int m, int k){
 	return (double) f/Nelements;
 }
 
-double cr_index(int *apriori,int *clustering,int Nelements){
+double cr_index(unsigned int *apriori,unsigned int *clustering,unsigned int Nelements){
     double a = 0.0, b = 0.0, c = 0.0, d = 0.0, p, cr;
 	for(unsigned int i = 0; i < Nelements-1; i++)
         for(unsigned int j = (i+1); j < Nelements; j++){
@@ -98,8 +98,8 @@ double cr_index(int *apriori,int *clustering,int Nelements){
     return cr;
 }
 
-//ok
-double jaccard_index(int *apriori, int *clustering, int Nelements){
+
+double jaccard_index(unsigned int *apriori, unsigned int *clustering, unsigned int Nelements){
 	double a = 0.0, b = 0.0, c = 0.0, d = 0.0, p, j;
 	 for(unsigned int i = 0; i < Nelements-1; i++)
         for(unsigned int j = (i+1); j < Nelements; j++){
@@ -117,25 +117,23 @@ double jaccard_index(int *apriori, int *clustering, int Nelements){
     return j;
 }
 
-double purity_index(unsigned int *apriori, unsigned int *clustering, unsigned int Nelements, unsigned int k) {
+double purity_index(unsigned int *apriori, unsigned int *clustering, unsigned int Nelements,unsigned int m,unsigned int k) {
 	unsigned int nij = 0;
-        double purity = 0;
-        double max=0;
+	double purity = 0;
+	double max=0;
 
 
-	for (unsigned int i = 0; i < k; i++) {
-            max=0;
-		for (unsigned int j = 0; j < k; j++){
-                        nij=0;
-			for (unsigned int z = 0; z < Nelements; z++)
-					if (apriori[z] == i && clustering[z] == j)
-						nij++;
-                        if(nij>max)
-                            max = nij;
-                }
-		
-                
-            purity+=max;
+	for(unsigned int i = 1; i <= m; i++){
+        max=0;
+		for(unsigned int j = 1; j <= k; j++){
+            nij=0;
+			for(unsigned int z = 0; z < Nelements; z++)
+				if (apriori[z] == i && clustering[z] == j)
+					nij++;
+			if(nij>max)
+				max = nij;
+        }
+		purity+=max;
 	}
 
 	purity = (double) purity / Nelements;
@@ -143,13 +141,13 @@ double purity_index(unsigned int *apriori, unsigned int *clustering, unsigned in
 	return purity;
 }
 
-int *normalize_clusters(int *cluster,int Nelements){
-	int *taken = CALLOC(int,NCLUSTERSMAX);
-	int *newCluster = MALLOC(int,Nelements);
+unsigned int *normalize_clusters(unsigned int *cluster,unsigned int Nelements){
+	unsigned int *taken = CALLOC(unsigned int,NCLUSTERSMAX);
+	unsigned int *newCluster = MALLOC(unsigned int,Nelements);
 
-	int Nclusters = 0;
+	unsigned int Nclusters = 0;
 
-	for(int i=0;i<Nelements;i++){
+	for(unsigned int i=0;i<Nelements;i++){
 		if( taken[cluster[i]] == 0 ){
 			newCluster[i] = taken[cluster[i]] = ++Nclusters;
 		}
@@ -170,10 +168,10 @@ int main(int argc, char **argv){
         printf("Não foi possível abrir um dos arquivos\n");
         return 1;
     }
-    int Nelements = atoi(argv[1]);
-    int *apriori = MALLOC(int,Nelements);
-	int *clustering = MALLOC(int,Nelements);
-    for(int i=0;i<Nelements;i++){
+    unsigned int Nelements = atoi(argv[1]);
+    unsigned int *apriori = MALLOC(unsigned int,Nelements);
+	unsigned int *clustering = MALLOC(unsigned int,Nelements);
+    for(unsigned int i=0;i<Nelements;i++){
         fscanf(file1,"%d",&apriori[i]);
         fscanf(file2,"%d",&clustering[i]);
     }
@@ -186,8 +184,8 @@ int main(int argc, char **argv){
 	
 
 	
-    int NclustersApriori=0,NclustersClustering=0;
-    for(int i=0;i<Nelements;i++){
+    unsigned int NclustersApriori=0,NclustersClustering=0;
+    for(unsigned int i=0;i<Nelements;i++){
         NclustersApriori = MAX(NclustersApriori,apriori[i]);
         NclustersClustering = MAX(NclustersClustering,clustering[i]);
     }
@@ -195,7 +193,11 @@ int main(int argc, char **argv){
     
 	double jaccard = jaccard_index(apriori,clustering,Nelements);
 	double fmeasure_index = fmeasuret(apriori,clustering,Nelements,NclustersApriori,NclustersClustering);
+	double purity = purity_index(apriori,clustering,Nelements,NclustersApriori,NclustersClustering);
+	double cr = cr_index(apriori,clustering,Nelements);
 	printf("jaccard: %lf\n",jaccard);
 	printf("fmeasure: %lf\n",fmeasure_index);
+	printf("purity: %lf\n",purity);
+	printf("cr_index: %lf\n",cr);
     return 0;
 }
