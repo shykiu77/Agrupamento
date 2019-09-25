@@ -1,0 +1,23 @@
+Aggregation:
+jaccard: 0.414127
+fmeasure: 0.720645
+purity: 0.696629
+cr_index: 0.387612
+
+CSPA:
+jaccard: 0.451083
+fmeasure: 0.738702
+purity: 0.735955
+cr_index: 0.432245
+
+HGPA:
+jaccard: 0.401349
+fmeasure: 0.701558
+purity: 0.691011
+cr_index: 0.356302
+
+MCLA:
+jaccard: 0.411968
+fmeasure: 0.714780
+purity: 0.702247
+cr_index: 0.371114
