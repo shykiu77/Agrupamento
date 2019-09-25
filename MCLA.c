@@ -1,4 +1,6 @@
 #include "ensemble.h"
+#include <sys/types.h> 
+#include<sys/wait.h>
 
 #define NHYPEREDGESMAX 1000
 
@@ -78,6 +80,24 @@ double Similaridade(Queue *conjunto1,Queue *conjunto2,int NelementosTotais){
 }
 
 
+int *normalize_meta_clusters(int *cluster,int Nelements){
+	int *taken = CALLOC(int,NCLUSTERSMAX+1);
+	int *newCluster = MALLOC(int,Nelements+1);
+
+	int Nclusters = 0;
+
+	for(int i=1;i<=Nelements;i++){
+		if( taken[cluster[i]] == 0 ){
+			newCluster[i] = taken[cluster[i]] = ++Nclusters;
+		}
+		else{
+			newCluster[i] = taken[cluster[i]];
+		}
+	}
+
+	return newCluster;
+}
+
 
 int main(int argc,char **argv){
     int Nelementos,Nclusters;
@@ -128,15 +148,106 @@ int main(int argc,char **argv){
         }
     }
 
-    printf("hyperedges: \n");
-    for(int i=1;i<=NmetaVertices;i++){
-        PrintQueue(metaVertices[i],stdout);
-    }
-    printf("\nsemelhanças: \n");
-    for(int i=1;i<=NmetaVertices;i++){
+    int NmetaArestas = (NmetaVertices*NmetaVertices)/2;
+    int NmetaArestasZero = 0;
+    for(int i=1;i<=NmetaVertices;i++)
         for(int j=1;j<=NmetaVertices;j++)
-            printf("%lf ",distancias[i][j]);
-        printf("\n");
+            if((int)(distancias[i][j]*NmetaVertices) == 0 || i == j)
+                NmetaArestasZero++;
+            
+    NmetaArestas -= NmetaArestasZero/2;
+
+    char fileOutput[] = "Saidas/Wine/MCLA.tempFile";
+    FILE *pontFile = fopen(fileOutput,"w");
+    if(fileOutput){
+        fprintf(pontFile,"%d %d 001\n",NmetaVertices,NmetaArestas);
+        for(int i=1;i<=NmetaVertices;i++){
+            for(int j=1;j<=NmetaVertices;j++)
+                if(i!=j && (int)(distancias[i][j]*NmetaVertices)!=0 )
+                    fprintf(pontFile,"%d %d ",j,(int)(distancias[i][j]*NmetaVertices));
+            
+            fprintf(pontFile,"\n");
+        }
+        fclose(pontFile);
     }
+    else{
+        printf("error opening file\n");
+        return 1;
+    }
+   
+    if(fork() == 0){
+        execl("/usr/bin/gpmetis","gpmetis","-ptype=rb",fileOutput,argv[1],NULL);
+    }
+    else{
+        wait(NULL);
+        char fileInput[50];
+        strcpy(fileInput,fileOutput);
+        strcat(fileInput,".part.");
+        strcat(fileInput,argv[1]);
+        pontFile = fopen(fileInput,"r");
+        int cont=0;
+        char line[3];
+        char METISresult[NmetaVertices+2];
+        if(pontFile){
+            while(fgets(line,sizeof(line),pontFile)){
+                METISresult[++cont] = line[0];
+            }
+            fclose(pontFile);
+            int *metaClusters = MALLOC(int,NmetaVertices+1);
+            for(int i=1;i<=NmetaVertices;i++)   
+                metaClusters[i] = METISresult[i] - '0';
+
+
+
+            metaClusters = normalize_meta_clusters(metaClusters,NmetaVertices);
+            
+        
+            int NmetaClusters = 0;
+            for(int i=1;i<=NmetaVertices;i++)
+                NmetaClusters = MAX(NmetaClusters,metaClusters[i]);
+            
+
+
+            double metaHyperEdge[NmetaClusters+1][Nelementos];
+            for(int i=1;i<=NmetaClusters;i++)
+                for(int j=0;j<Nelementos;j++)
+                    metaHyperEdge[i][j] = 0;
+
+           
+            
+
+
+            for(int i=1;i<=NmetaVertices;i++){
+                Node *ite = metaVertices[i]->head;
+                while(ite!=NULL){
+                    metaHyperEdge[metaClusters[i]][ite->vertice]++;
+                    ite = ite->proximo;
+                }
+            }            
+            
+            int finalClustering[Nelementos];
+            for(int i=0;i<Nelementos;i++){
+                int cluster = 0;
+                int associacao = 0;
+                for(int j=1;j<=NmetaClusters;j++){
+                    if(metaHyperEdge[j][i] > associacao){
+                        associacao = metaHyperEdge[j][i];
+                        cluster = j;
+                    }
+                }
+                finalClustering[i] = cluster;
+            }
+
+            for(int i=0;i<Nelementos;i++)
+                printf("%d ",finalClustering[i]);
+            printf("\n");
+            
+        }
+        else{
+            return 1;
+        }
+    }
+
+    
     return 0;
 }
