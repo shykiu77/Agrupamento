@@ -1,6 +1,6 @@
 #include "ensemble.h"
 
-#define NCLUSTERSMAX 1000
+
 
 double recall(unsigned int *apriori,unsigned int *clustering,unsigned int Nelements,unsigned int i,unsigned int j){
     unsigned int nij=0;
