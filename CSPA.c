@@ -1,6 +1,6 @@
 #include "ensemble.h"
 
-
+//teste
 int main(int argc,char **argv){
     int Nelements,Nclusters;
 	scanf("%d%d",&Nelements,&Nclusters);
