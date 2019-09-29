@@ -159,7 +159,7 @@ unsigned int *normalize_clusters(unsigned int *cluster,unsigned int Nelements){
 	return newCluster;
 }
 
-//NOTA: Tanto os agrupamentos verdadeiros quanto os resultantes de um algoritmo devem começar de 0.
+
 int main(int argc, char **argv){
     FILE *file1,*file2;
     file1 = fopen(argv[2],"r");
