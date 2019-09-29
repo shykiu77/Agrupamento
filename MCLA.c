@@ -237,11 +237,25 @@ int main(int argc,char **argv){
                 }
                 finalClustering[i] = cluster;
             }
+            char programOutput[40];
+            strcpy(programOutput,"Saidas/Wine/MCLA.wine.part");
+            strcat(programOutput,argv[1]);
+            pontFile = fopen(programOutput,"w");
+
 
             for(int i=0;i<Nelementos;i++)
-                printf("%d ",finalClustering[i]);
-            printf("\n");
-            
+                fprintf(pontFile,"%d ",finalClustering[i]);
+            fprintf(pontFile,"\n");
+
+            char tempFile[40];
+            strcpy(tempFile,"./Saidas/Wine/MCLA.tempFile");
+            if(fork() == 0)
+                execl("/usr/bin/rm","rm","-r",tempFile,NULL);
+            else{
+                strcat(tempFile,".part.");
+                strcat(tempFile,argv[1]);
+                execl("/usr/bin/rm","rm","-r",tempFile,NULL);
+            }
         }
         else{
             return 1;
