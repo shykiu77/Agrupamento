@@ -7,7 +7,7 @@
 #define CSPA 1
 #define AGGREGATION 2
 #define HGPA 3
-
+#define MCLA 4
 #define STRCMP(a,b) strcmp(a,b) == 0
 
 void PrintMoreInfo(){
@@ -18,6 +18,7 @@ void PrintArgs(){
     printf("-a, --Aggregation\tUses the Aggregation algorithm\n");
     printf("-c, --CSPA\t\tUses the CSPA algorithm\n");
     printf("-h, --HGPA\t\tUses the HGPA algorithm\n");
+    printf("-c, --MCLA\t\tUses the MCLA algorithm\n");
     printf("\n");
 
     PrintMoreInfo();
@@ -38,6 +39,8 @@ int ReadAlgorithm(char *arg){
         return CSPA;
     if(STRCMP(arg,"-h") || STRCMP(arg,"--HGPA"))
         return HGPA;
+    if(STRCMP(arg,"-m") || STRCMP(arg,"--MCLA"))
+        return MCLA;
     if(STRCMP(arg,"--help"))
         return HELP;
     return -1;
@@ -83,6 +86,14 @@ void Run(int algorithm,int argc,char **argv){
             break;
         case AGGREGATION:
             strcat(program,"Aggregation");
+            break;
+        case MCLA:
+            if(argc < 4){
+                Error(INVALIDARGNUM,NULL);
+                return;
+            }
+            strcat(program,"MCLA ");
+            strcat(program,argv[3]);
             break;
     }
     fpAlg = popen(program,"w");
