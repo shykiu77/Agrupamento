@@ -18,7 +18,7 @@ void PrintArgs(){
     printf("-a, --Aggregation\tUses the Aggregation algorithm\n");
     printf("-c, --CSPA\t\tUses the CSPA algorithm\n");
     printf("-h, --HGPA\t\tUses the HGPA algorithm\n");
-    printf("-c, --MCLA\t\tUses the MCLA algorithm\n");
+    printf("-m, --MCLA\t\tUses the MCLA algorithm\n");
     printf("\n");
 
     PrintMoreInfo();
