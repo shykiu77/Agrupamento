@@ -8,4 +8,4 @@ criar:
 	mkdir -p Bin && mkdir -p Entradas && mkdir -p Saidas
 
 %: %.c
-	$(CC) $(CFLAGS)  -Wall -o Bin/$@ $<
+	$(CC) $(CFLAGS)  -Wall -o Bin/$@ $< -lm
