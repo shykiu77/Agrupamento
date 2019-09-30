@@ -159,7 +159,7 @@ int main(int argc,char **argv){
 
     char fileOutput[] = "Saidas/Wine/MCLA.tempFile";
     FILE *pontFile = fopen(fileOutput,"w");
-    if(fileOutput){
+    if(pontFile){
         fprintf(pontFile,"%d %d 001\n",NmetaVertices,NmetaArestas);
         for(int i=1;i<=NmetaVertices;i++){
             for(int j=1;j<=NmetaVertices;j++)
@@ -246,6 +246,8 @@ int main(int argc,char **argv){
             for(int i=0;i<Nelementos;i++)
                 fprintf(pontFile,"%d ",finalClustering[i]);
             fprintf(pontFile,"\n");
+
+            fclose(pontFile);
 
             char tempFile[40];
             strcpy(tempFile,"./Saidas/Wine/MCLA.tempFile");

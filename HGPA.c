@@ -103,7 +103,7 @@ int main(int argc,char **argv){
     strcat(fileOutput,datasetName);
 
     FILE *pontFile = fopen(fileOutput,"w");
-    if(fileOutput){
+    if(pontFile){
         fprintf(pontFile,"%d %d\n",NhyperEdgesTotal,Nelements);
         for(int i=1;i<=NhyperEdgesTotal;i++)
         if(saida[i]->head != NULL)

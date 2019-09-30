@@ -38,7 +38,7 @@ int main(int argc,char **argv){
     strcat(fileOutput,datasetName);
 
     FILE *pontFile = fopen(fileOutput,"w");
-    if(fileOutput){
+    if(pontFile){
         fprintf(pontFile,"%d %d 001\n",Nvertices,Narestas);
         for(int i=0;i<Nvertices;i++){
             for(int j=0;j<Nvertices;j++)
