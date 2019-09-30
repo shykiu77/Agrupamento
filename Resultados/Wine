@@ -21,3 +21,9 @@ jaccard: 0.411968
 fmeasure: 0.714780
 purity: 0.702247
 cr_index: 0.371114
+
+IVC
+jaccard: 0.410132
+fmeasure: 0.635319
+purity: 0.808989
+cr_index: 0.289126
