@@ -4,6 +4,7 @@
 #include <math.h>
 #include <string.h>
 #include <unistd.h>
+#include <time.h>
 
 #define MALLOC(t,n) (t*)malloc(sizeof(t)*n)
 #define CALLOC(t,n) (t*)calloc(sizeof(t),n)
