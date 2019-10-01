@@ -1,5 +1,6 @@
 #include "ensemble.h"
 
+//limitações: Esse algoritmo só funciona bem quando todos os ensembles tem o mesmo número de agrupamentos, que é igual ao número de agrupamentos alvo.
 
 unsigned int *normalize_clusters(unsigned int *cluster,unsigned int Nelements){
 	unsigned int *taken = CALLOC(unsigned int,NCLUSTERSMAX);
