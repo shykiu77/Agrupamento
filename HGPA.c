@@ -59,6 +59,7 @@ int main(int argc,char **argv){
 		for(int j=0;j<Nelements;j++)
 			scanf("%d",&ensemble[i][j]);
     
+    //desnecessário.
     for(int i=0;i<Nclusters;i++){
         int ok=1;
         for(int j=0;j<Nelements;j++)
