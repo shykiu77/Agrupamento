@@ -1,8 +1,8 @@
 #include "ensemble.h"
 #include <sys/types.h> 
-#include<sys/wait.h>
+#include <sys/wait.h>
 
-#define NHYPEREDGESMAX 1000
+
 
 
 typedef struct Node{
@@ -122,7 +122,7 @@ int main(int argc,char **argv){
                 ensemble[i][j]++;
         }
     }
-    Queue **metaVertices = MALLOC(Queue*,NHYPEREDGESMAX);
+    Queue **metaVertices = MALLOC(Queue*,NCLUSTERSMAX);
     
     int NmetaVertices = 0;
     for(int i=0;i<Nclusters;i++){
