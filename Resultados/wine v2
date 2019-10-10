@@ -27,3 +27,9 @@ jaccard: 0.378623
 fmeasure: 0.816585
 purity: 0.775281
 cr_index: 0.235457
+
+LWEA
+jaccard: 0.411968
+fmeasure: 0.714780
+purity: 0.702247
+cr_index: 0.371114
