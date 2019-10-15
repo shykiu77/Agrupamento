@@ -8,10 +8,13 @@
 #define AGGREGATION 2
 #define HGPA 3
 #define MCLA 4
+#define LWEA 5
+#define IVC 6
+#define ALL 7
 #define STRCMP(a,b) strcmp(a,b) == 0
 
 void PrintMoreInfo(){
-    printf("The CSPA and HGPA algorithms require the number of clusters to be stated after the file path\n");
+    
 }   
 
 void PrintArgs(){
@@ -19,13 +22,17 @@ void PrintArgs(){
     printf("-c, --CSPA\t\tUses the CSPA algorithm\n");
     printf("-h, --HGPA\t\tUses the HGPA algorithm\n");
     printf("-m, --MCLA\t\tUses the MCLA algorithm\n");
+    printf("-l, --LWEA\t\tUses the LWEA algorithm\n");
+    printf("-i, --IVC\t\tUses the IVC algorithm\n");
+
+    printf("-ALL\t\tUses all algorithms.\n");
     printf("\n");
 
     PrintMoreInfo();
 }
 
 void ShowHelp(){
-    printf("Usage: ensemble [OPTIONS] [FILE] [OPTIONAL]\n");
+    printf("Usage: ensemble [OPTIONS] [INPUT FILE] [NUMBER OF PARTITIONS] [OUTPUT FILE]\n");
     printf("Uses an clustering ensemble algorithm to cluster elements of the input file\n\n");
     printf("Arguments: \n");
 
@@ -41,8 +48,14 @@ int ReadAlgorithm(char *arg){
         return HGPA;
     if(STRCMP(arg,"-m") || STRCMP(arg,"--MCLA"))
         return MCLA;
+    if(STRCMP(arg,"-l") || STRCMP(arg,"--LWEA"))
+        return LWEA;
+    if(STRCMP(arg,"-i") || STRCMP(arg,"--IVC"))
+        return IVC;
     if(STRCMP(arg,"--help"))
         return HELP;
+    if(STRCMP(arg,"-ALL"))
+        return ALL;
     return -1;
 }
 
@@ -69,33 +82,29 @@ void Run(int algorithm,int argc,char **argv){
             return;
             break;
         case CSPA:
-            if(argc < 4){
-                Error(INVALIDARGNUM,NULL);
-                return;
-            }
             strcat(program,"CSPA ");
-            strcat(program,argv[3]);
             break;
         case HGPA:
-            if(argc < 4){
-                Error(INVALIDARGNUM,NULL);
-                return;
-            }
             strcat(program,"HGPA ");
-            strcat(program,argv[3]);
             break;
         case AGGREGATION:
-            strcat(program,"Aggregation");
+            strcat(program,"Aggregation ");
             break;
         case MCLA:
-            if(argc < 4){
-                Error(INVALIDARGNUM,NULL);
-                return;
-            }
             strcat(program,"MCLA ");
-            strcat(program,argv[3]);
+            break;
+        case LWEA:
+            strcat(program,"LWEA ");
+            break;
+         case IVC:
+            strcat(program,"IVC ");
             break;
     }
+    strcat(program,argv[3]);
+    strcat(program," ");
+    strcat(program,argv[4]);
+    
+  
     fpAlg = popen(program,"w");
     int c;
     FILE *fpFile;
@@ -111,7 +120,7 @@ void Run(int algorithm,int argc,char **argv){
 }
 
 int main(int argc, char **argv){
-    if(argc < 3){
+    if(argc < 4){
         ShowHelp();
         return 1;
     }
@@ -120,6 +129,11 @@ int main(int argc, char **argv){
     if(algorithm == -1){
         return Error(INVALIDARG,argv[1]);
     }
-    Run(algorithm,argc,argv);
+    if(algorithm != ALL)
+        Run(algorithm,argc,argv);
+    else
+        for(int i=1;i<ALL;i++)
+            Run(i,argc,argv);
+    
     return 0;
 }

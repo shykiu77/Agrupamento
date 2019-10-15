@@ -157,7 +157,9 @@ int main(int argc,char **argv){
             
     NmetaArestas -= NmetaArestasZero/2;
 
-    char fileOutput[] = "Saidas/Wine/MCLA.tempFile";
+    char fileOutput[60];
+    strcpy(fileOutput,argv[2]);
+    strcat(fileOutput,".tempFile");  
     FILE *pontFile = fopen(fileOutput,"w");
     if(pontFile){
         fprintf(pontFile,"%d %d 001\n",NmetaVertices,NmetaArestas);
@@ -238,8 +240,8 @@ int main(int argc,char **argv){
                 finalClustering[i] = cluster;
             }
             char programOutput[40];
-            strcpy(programOutput,"Saidas/Wine/MCLA.wine.part");
-            strcat(programOutput,argv[1]);
+            strcpy(programOutput,argv[2]);
+            strcat(programOutput,"_MCLA");
             pontFile = fopen(programOutput,"w");
 
 
@@ -249,15 +251,7 @@ int main(int argc,char **argv){
 
             fclose(pontFile);
 
-            char tempFile[40];
-            strcpy(tempFile,"./Saidas/Wine/MCLA.tempFile");
-            if(fork() == 0)
-                execl("/usr/bin/rm","rm","-r",tempFile,NULL);
-            else{
-                strcat(tempFile,".part.");
-                strcat(tempFile,argv[1]);
-                execl("/usr/bin/rm","rm","-r",tempFile,NULL);
-            }
+           
         }
         else{
             return 1;

@@ -152,7 +152,7 @@ void CalcularDistancias(int **ensemble,double **distancias,int Nelements,int Ncl
 }	
 
 
-int main(){
+int main(int argc, char **argv){
 	int Nelements,Nclusters;
 	scanf("%d%d",&Nelements,&Nclusters);
 	int **ensemble = MALLOC(int*,Nclusters);
@@ -175,7 +175,11 @@ int main(){
 	
 	int *results = AgglomerativeClustering(clusterings,distancias,Nelements);
 
-	FILE *filePont = fopen("Saidas/Wine/Aggregation.wine","w");
+	char output[60];
+	strcpy(output,argv[2]);
+	strcat(output,"_LWEA");
+
+	FILE *filePont = fopen(output,"w");
 	if(filePont){
 		for(int i=0;i<Nelements;i++)
 			fprintf(filePont,"%d ",results[i]);

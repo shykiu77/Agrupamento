@@ -30,13 +30,11 @@ int main(int argc,char **argv){
     }
     Narestas -= NarestasZero/2;
 
-    char datasetName[20];
-    scanf("%s",datasetName);
+  
     char fileOutput[40];
-    //TODO: generalizar saida
-    strcpy(fileOutput,"Saidas/Wine/CSPA.");
-    strcat(fileOutput,datasetName);
 
+    strcpy(fileOutput,argv[2]);
+    strcat(fileOutput,"_CSPA");
     FILE *pontFile = fopen(fileOutput,"w");
     if(pontFile){
         fprintf(pontFile,"%d %d 001\n",Nvertices,Narestas);

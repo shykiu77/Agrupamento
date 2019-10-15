@@ -213,12 +213,12 @@ int *AgglomerativeClustering(Cluster **clusters,double **distancias,int Nelement
 		for(int j=0;j<Nelements;j++)
 			pesos[i][j]=distancias[i][j];
 	}
-	double minDist = GetMaxAverageWeight(clusters,pesos,&c1,&c2,Nelements);
+	GetMaxAverageWeight(clusters,pesos,&c1,&c2,Nelements);
 	while(Nelements-ite > NclustersFinal){
 		ite++;
 		mergeClusters(clusters, c1, c2);
 		AtualizarPesos(clusters,pesos,distancias,c1,c2,Nelements);
-		minDist = GetMaxAverageWeight(clusters,pesos,&c1,&c2,Nelements);
+		GetMaxAverageWeight(clusters,pesos,&c1,&c2,Nelements);
 	}
 	int *finalClustering = MALLOC(int,Nelements);
 	int cont=0;
@@ -304,9 +304,21 @@ int main(int argc,char **argv){
     int *results = AgglomerativeClustering(clusterings,distancias,Nelementos,atoi(argv[1]));
     
     results = normalize_clusters(results,Nelementos);
-    for(int i=0;i<Nelementos;i++)
-        printf("%d ",results[i]);
-    printf("\n");
+
+	char output[60];
+	strcpy(output,argv[2]);
+	strcat(output,"_LWEA");
+
+	FILE *fileOutput = fopen(output,"w");
+	if(fileOutput){
+		for(int i=0;i<Nelementos;i++)
+			fprintf(fileOutput,"%d ",results[i]);
+		fprintf(fileOutput,"\n");
+	}
+    else{
+		printf("não foi possível salvar o restulado.\n");	
+	}
+	
 
     return 0;
 }

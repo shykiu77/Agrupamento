@@ -136,8 +136,20 @@ int main(int agrc,char **argv){
 
     finalClustering = normalize_clusters(finalClustering,Nelements);
 
-    for(int i=0;i<Nelements;i++)
-        printf("%d ",finalClustering[i]);
-    printf("\n");
+    char output[60];
+	strcpy(output,argv[2]);
+	strcat(output,"_AGGREGATION");
+
+	FILE *fileOutput = fopen(output,"w");
+
+    if(fileOutput){
+        for(int i=0;i<Nelements;i++)
+            fprintf(fileOutput,"%d ",finalClustering[i]);
+        fprintf(fileOutput,"\n");
+    }
+    else{
+        printf("nao foi possivel salver o resultado do IVC\n");
+    }
+    
     return 0;
 }

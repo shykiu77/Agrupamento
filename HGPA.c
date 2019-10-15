@@ -100,9 +100,8 @@ int main(int argc,char **argv){
     char fileOutput[40];
 
     //TODO: generalizar saidas.
-    strcpy(fileOutput,"Saidas/Wine/HGPA.");
-    strcat(fileOutput,datasetName);
-
+    strcpy(fileOutput,argv[2]);
+    strcat(fileOutput,"_HGPA");
     FILE *pontFile = fopen(fileOutput,"w");
     if(pontFile){
         fprintf(pontFile,"%d %d\n",NhyperEdgesTotal,Nelements);
