@@ -138,7 +138,7 @@ int main(int agrc,char **argv){
 
     char output[60];
 	strcpy(output,argv[2]);
-	strcat(output,"_AGGREGATION");
+	strcat(output,"_IVC");
 
 	FILE *fileOutput = fopen(output,"w");
 
