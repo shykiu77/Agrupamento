@@ -177,8 +177,7 @@ int main(int argc, char **argv){
 
 	char output[60];
 	strcpy(output,argv[2]);
-	strcat(output,"_LWEA");
-
+	strcat(output,"_AGGREGATION");
 	FILE *filePont = fopen(output,"w");
 	if(filePont){
 		for(int i=0;i<Nelements;i++)
