@@ -5,6 +5,6 @@
 
 for filename in $1*; do
     echo $filename >> $4 
-    Bin/metricas $2 $3 $filename >> $4
+    Bin/metricasExternas $2 $3 $filename >> $4
     echo "" >> $4
 done
