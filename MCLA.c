@@ -159,7 +159,7 @@ int main(int argc,char **argv){
 
     char fileOutput[60];
     strcpy(fileOutput,argv[2]);
-    strcat(fileOutput,".tempFile");  
+    strcat(fileOutput,"_MCLA.tempFile");  
     FILE *pontFile = fopen(fileOutput,"w");
     if(pontFile){
         fprintf(pontFile,"%d %d 001\n",NmetaVertices,NmetaArestas);
