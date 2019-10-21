@@ -1,6 +1,6 @@
 #include "ensemble.h"
 
-#define NHYPEREDGESMAX 1000
+#define NHYPEREDGESMAX 1000000
 #define UBfactor "5"
 
 typedef struct Node{

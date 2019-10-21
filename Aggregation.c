@@ -175,7 +175,7 @@ int main(int argc, char **argv){
 	
 	int *results = AgglomerativeClustering(clusterings,distancias,Nelements);
 
-	char output[60];
+	char output[200];
 	strcpy(output,argv[2]);
 	strcat(output,"_AGGREGATION");
 	FILE *filePont = fopen(output,"w");

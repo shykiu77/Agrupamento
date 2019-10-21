@@ -1,0 +1,46 @@
+Saidas/Subcorel2/subcorel2_AGGREGATION
+jaccard: 0.405399
+fmeasure: 0.688524
+purity: 0.687500
+cr_index: 0.437200
+Sillouet: 0.073508
+
+Saidas/Subcorel2/subcorel2_CSPA.part.4
+jaccard: 0.419594
+fmeasure: 0.697469
+purity: 0.697500
+cr_index: 0.456221
+sillouet: 0.073585
+
+Saidas/Subcorel2/subcorel2_HGPA.part.4
+jaccard: 0.137931
+fmeasure: 0.250000
+purity: 0.250000
+cr_index: -0.007576
+sillouet: -0.012132
+
+Saidas/Subcorel2/subcorel2_IVC
+jaccard: 0.374084
+fmeasure: 1.340299
+purity: 0.742500
+cr_index: 0.353412
+sillouet: 0.073690
+
+Saidas/Subcorel2/subcorel2_LWEA
+jaccard: 0.405399
+fmeasure: 0.688524
+purity: 0.687500
+cr_index: 0.437200
+sillouet: 0.073508
+
+Saidas/Subcorel2/subcorel2_MCLA
+jaccard: 0.405399
+fmeasure: 0.688524
+purity: 0.687500
+cr_index: 0.437200
+sillouet: 0.073508
+
+
+
+Sillouet(clustering verdadeiro):
+0.090512
