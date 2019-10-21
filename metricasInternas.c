@@ -19,6 +19,20 @@ unsigned int *normalize_clusters(unsigned int *cluster,unsigned int Nelements){
 }
 
 
+double Sillouet(unsigned int Nelements, unsigned int Natributos,double **dataset, unsigned int *clustering, unsigned int NclustersClustering){
+    /*TODO:
+    calcular valor de a(i) para cada elemento.
+    calcular valor de b(i) para cada elemento.
+    encontrar s(i) com a(i) e b(i).
+    */
+
+    unsigned int *NelementsOnCluster = CALLOC(unsigned int,NclustersClustering +1);
+    for(int i=0;i<Nelements;i++)
+        NelementsOnCluster[clustering[i]]++;
+    
+
+}
+
 //Argumentos: número de elementos, numero de atributos, dataset e clustering.
 int main(int argc, char **argv){
     if(argc != 5){
@@ -59,7 +73,7 @@ int main(int argc, char **argv){
     for(unsigned int i=0;i<Nelements;i++)
         NclustersClustering = MAX(NclustersClustering,clustering[i]);
     
-    
+    double s = Sillouet( Nelements, Natributos,dataset, clustering, NclustersClustering);
 	
     return 0;
 }
