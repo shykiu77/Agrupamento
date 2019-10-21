@@ -54,8 +54,38 @@ double Sillouet(unsigned int Nelements, unsigned int Natributos,double **dataset
         
     }
     
+    double *b = CALLOC(double,Nelements);
 
+    for(int i=0;i<Nelements;i++){
+        double *potentialB = CALLOC(double,NclustersClustering+1);
+        for(int j=0;j<Nelements;j++){
+            if(clustering[i] != clustering[j]){
+                potentialB[clustering[j]] += distancia(Natributos,dataset[i],dataset[j]);
+            }
+        }
+        
+        b[i] = INFINITY;
+        for(int j=1; j<=NclustersClustering;j++){
+            if(j != clustering[i])
+                b[i] = MIN(b[i], potentialB[j]/NelementsOnCluster[j]);
+        }    
+    }
+    
+    double *s = CALLOC(double,Nelements);
 
+    for(int i=0;i<Nelements;i++){
+        if(NelementsOnCluster[clustering[i]] > 1){
+            s[i] = ((b[i] - a[i])/(MAX(a[i],b[i])));
+        }
+        else{
+            s[i] = 0;
+        }
+    }
+    double soma = 0;
+    for(int i=0;i<Nelements;i++)
+        soma += s[i];
+
+    return soma/Nelements;
 }
 
 //Argumentos: número de elementos, numero de atributos, dataset e clustering.
@@ -99,6 +129,6 @@ int main(int argc, char **argv){
         NclustersClustering = MAX(NclustersClustering,clustering[i]);
     
     double s = Sillouet( Nelements, Natributos,dataset, clustering, NclustersClustering);
-	
+	printf("%lf\n",s);
     return 0;
 }
