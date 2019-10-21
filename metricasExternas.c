@@ -160,6 +160,7 @@ unsigned int *normalize_clusters(unsigned int *cluster,unsigned int Nelements){
 }
 
 
+//Número de elementos, arquivo verdadeiro, arquivo de saida de algoritmo.
 int main(int argc, char **argv){
     FILE *file1,*file2;
     file1 = fopen(argv[2],"r");
