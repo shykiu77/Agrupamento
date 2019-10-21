@@ -18,10 +18,17 @@ unsigned int *normalize_clusters(unsigned int *cluster,unsigned int Nelements){
 	return newCluster;
 }
 
+double distancia(int Natributos,double *p1,double *p2){
+    double dist = 0;
+    for(int i=0;i<Natributos;i++){
+        dist += (p1[i] - p2[i]) * (p1[i] - p2[i]);
+    }
+    return sqrt(dist);
+}
+
 
 double Sillouet(unsigned int Nelements, unsigned int Natributos,double **dataset, unsigned int *clustering, unsigned int NclustersClustering){
     /*TODO:
-    calcular valor de a(i) para cada elemento.
     calcular valor de b(i) para cada elemento.
     encontrar s(i) com a(i) e b(i).
     */
@@ -30,6 +37,24 @@ double Sillouet(unsigned int Nelements, unsigned int Natributos,double **dataset
     for(int i=0;i<Nelements;i++)
         NelementsOnCluster[clustering[i]]++;
     
+    double *a = CALLOC(double,Nelements);
+    for(int i=0;i<Nelements;i++){
+        for(int j=0;j<Nelements;j++){
+            if(clustering[i] == clustering[j] && i != j){
+                a[i] += distancia(Natributos,dataset[i],dataset[j]);
+            }
+        }
+    }
+
+    for(int i=0;i<Nelements;i++){
+        if(NelementsOnCluster[clustering[i]] - 1 != 0)
+            a[i] /= NelementsOnCluster[clustering[i]] - 1;
+        else
+            a[i] = 0;
+        
+    }
+    
+
 
 }
 
