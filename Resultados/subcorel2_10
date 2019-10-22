@@ -1,0 +1,30 @@
+Saidas/Subcorel2/Subcorel2_10/ola_AGGREGATION
+jaccard: 0.400806
+fmeasure: 0.674237
+purity: 0.675000
+cr_index: 0.430937
+
+Saidas/Subcorel2/Subcorel2_10/ola_CSPA.part.4
+jaccard: 0.408320
+fmeasure: 0.685181
+purity: 0.685000
+cr_index: 0.441183
+
+Saidas/Subcorel2/Subcorel2_10/ola_HGPA.part.4
+jaccard: 0.137931
+fmeasure: 0.250000
+purity: 0.250000
+cr_index: -0.007576
+
+Saidas/Subcorel2/Subcorel2_10/ola_LWEA
+jaccard: 0.400806
+fmeasure: 0.674237
+purity: 0.675000
+cr_index: 0.430937
+
+Saidas/Subcorel2/Subcorel2_10/ola_MCLA
+jaccard: 0.405178
+fmeasure: 0.679767
+purity: 0.680000
+cr_index: 0.436913
+
