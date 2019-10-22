@@ -1,7 +1,7 @@
 #include "ensemble.h"
 
 #define NHYPEREDGESMAX 1000000
-#define UBfactor "5"
+#define UBfactor "22"
 
 typedef struct Node{
     struct Node *proximo;
@@ -99,7 +99,6 @@ int main(int argc,char **argv){
     scanf("%s",datasetName);
     char fileOutput[40];
 
-    //TODO: generalizar saidas.
     strcpy(fileOutput,argv[2]);
     strcat(fileOutput,"_HGPA");
     FILE *pontFile = fopen(fileOutput,"w");
@@ -117,7 +116,7 @@ int main(int argc,char **argv){
 
     
     printf("Se você esta vendo essa mensagem então provavelmente não tem o shmetis instalado\n");
-    execl("Bin/shmetis","shmetis",fileOutput,argv[1],UBfactor,NULL);
+    execl("Bin/Shmetis","shmetis",fileOutput,argv[1],UBfactor,NULL);
     
     return 0;
 }
