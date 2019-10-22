@@ -65,7 +65,7 @@ double fmeasuret(unsigned int *apriori, unsigned int *clustering, unsigned int N
 			max = MAX(max,value[j]);
 			
 
-		for(unsigned int j=1; j<=k; j++)
+		for(unsigned int j=1; j<=m; j++)
 			count[j]=0;
 	
 		for(unsigned int j=0; j<Nelements; j++){
@@ -74,8 +74,8 @@ double fmeasuret(unsigned int *apriori, unsigned int *clustering, unsigned int N
 		
 		f+= (double) count[i]*max;		
 	}
-        free(value);
-        free(count);
+	free(value);
+	free(count);
 
 	return (double) f/Nelements;
 }
@@ -181,16 +181,13 @@ int main(int argc, char **argv){
 
 	apriori = normalize_clusters(apriori,Nelements);
 	clustering = normalize_clusters(clustering,Nelements);
-
 	
-
 	
     unsigned int NclustersApriori=0,NclustersClustering=0;
     for(unsigned int i=0;i<Nelements;i++){
         NclustersApriori = MAX(NclustersApriori,apriori[i]);
         NclustersClustering = MAX(NclustersClustering,clustering[i]);
     }
-
     
 	double jaccard = jaccard_index(apriori,clustering,Nelements);
 	double fmeasure_index = fmeasuret(apriori,clustering,Nelements,NclustersApriori,NclustersClustering);
