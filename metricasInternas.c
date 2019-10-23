@@ -129,6 +129,6 @@ int main(int argc, char **argv){
         NclustersClustering = MAX(NclustersClustering,clustering[i]);
     
     double s = Sillouet( Nelements, Natributos,dataset, clustering, NclustersClustering);
-	printf("%lf\n",s);
+	printf("Sillouet: %lf\n",s);
     return 0;
 }
