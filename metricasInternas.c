@@ -27,6 +27,41 @@ double distancia(int Natributos,double *p1,double *p2){
 }
 
 
+
+double CenterDistance(unsigned int Nelements, unsigned int Natributos,double **dataset, unsigned int *clustering, unsigned int NclustersClustering){
+    double **centroids = MALLOC(double*,NclustersClustering+1);
+    for(int i=1;i<=NclustersClustering;i++)
+        centroids[i] = CALLOC(double,Natributos);
+     for(int i=1;i<=NclustersClustering;i++)
+        for(int j=0;j<Natributos;j++)
+            centroids[i][j] = 0;
+    
+    int *NelementsOnCluster = CALLOC(int,NclustersClustering+1);
+    for(int i=0;i<Nelements;i++){
+        for(int j=0;j<Natributos;j++)
+            centroids[clustering[i]][j] += dataset[i][j];
+        NelementsOnCluster[clustering[i]]++;
+    }
+    for(int i=1;i<=NclustersClustering;i++){
+        for(int j=0;j<Natributos;j++){
+            centroids[i][j] /= NelementsOnCluster[i];
+        }
+    }
+    double dist[NclustersClustering+1];
+    for(int i=1;i<=NclustersClustering;i++)
+        dist[i]=0;
+    
+    for(int i=0;i<Nelements;i++){
+        dist[clustering[i]] += distancia(Natributos,centroids[clustering[i]],dataset[i]);
+    }
+    double retorno = 0;
+    for(int i=1;i<=NclustersClustering;i++)
+        retorno += dist[i];
+    return retorno;
+
+}
+
+
 double Sillouet(unsigned int Nelements, unsigned int Natributos,double **dataset, unsigned int *clustering, unsigned int NclustersClustering){
     /*TODO:
     calcular valor de b(i) para cada elemento.
@@ -129,6 +164,8 @@ int main(int argc, char **argv){
         NclustersClustering = MAX(NclustersClustering,clustering[i]);
     
     double s = Sillouet( Nelements, Natributos,dataset, clustering, NclustersClustering);
+    double d = CenterDistance(Nelements, Natributos,dataset, clustering, NclustersClustering);
 	printf("Sillouet: %lf\n",s);
+    printf("Distancias ao centro: %lf\n",d);
     return 0;
 }
