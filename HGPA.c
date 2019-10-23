@@ -116,7 +116,7 @@ int main(int argc,char **argv){
 
     
     printf("Se você esta vendo essa mensagem então provavelmente não tem o shmetis instalado\n");
-    execl("Bin/Shmetis","shmetis",fileOutput,argv[1],UBfactor,NULL);
+    execl("Bin/shmetis","shmetis",fileOutput,argv[1],UBfactor,NULL);
     
     return 0;
 }
