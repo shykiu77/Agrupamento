@@ -14,7 +14,10 @@ int main(int argc,char **argv){
     int Nvertices,Narestas;
     Nvertices = Nelements;
     Narestas = (Nvertices*Nvertices)/2;
-    int peso[Nvertices][Nvertices];
+    int **peso  = MALLOC(int*,Nvertices);
+    for(int i=0;i<Nvertices;i++)
+        peso[i] = MALLOC(int,Nvertices);
+    //int peso[Nvertices][Nvertices];
     int NarestasZero = 0;
     for(int i=0;i<Nelements;i++){
         for(int j=0;j<Nelements;j++){
@@ -30,7 +33,7 @@ int main(int argc,char **argv){
     }
     Narestas -= NarestasZero/2;
 
-  
+    
     char fileOutput[40];
 
     strcpy(fileOutput,argv[2]);
