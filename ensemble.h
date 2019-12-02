@@ -5,6 +5,9 @@
 #include <string.h>
 #include <unistd.h>
 #include <time.h>
+#include <sys/stat.h>
+#include <sys/wait.h>
+#include <errno.h>
 
 #define MALLOC(t,n) (t*)malloc(sizeof(t)*n)
 #define CALLOC(t,n) (t*)calloc(sizeof(t),n)
