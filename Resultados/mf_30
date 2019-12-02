@@ -1,0 +1,56 @@
+Saidas/MultipleFeatures/MF_30/multipleFeatures_AGGREGATION
+jaccard: 0.540758
+fmeasure: 0.835019
+purity: 0.831500
+cr_index: 0.668611
+Sillouet: 0.202536
+Distancias ao centro: 2042602.903422
+
+Saidas/MultipleFeatures/MF_30/multipleFeatures_CSPA.part.10
+jaccard: 0.475047
+fmeasure: 0.780957
+purity: 0.781000
+cr_index: 0.604765
+Sillouet: 0.129175
+Distancias ao centro: 2322649.365281
+
+Saidas/MultipleFeatures/MF_30/multipleFeatures_HGPA.part.10
+jaccard: 0.189978
+fmeasure: 0.480943
+purity: 0.519500
+cr_index: 0.242234
+Sillouet: -0.158621
+Distancias ao centro: 5464911.469997
+
+Saidas/MultipleFeatures/MF_30/multipleFeatures_IVC
+jaccard: 0.463146
+fmeasure: 0.760719
+purity: 0.802500
+cr_index: 0.589178
+Sillouet: 0.159510
+Distancias ao centro: 2527326.167954
+
+Saidas/MultipleFeatures/MF_30/multipleFeatures_LWEA+Aggregation
+jaccard: 0.540758
+fmeasure: 0.835019
+purity: 0.831500
+cr_index: 0.668611
+Sillouet: 0.202536
+Distancias ao centro: 2042602.903422
+
+Saidas/MultipleFeatures/MF_30/multipleFeatures_LWEA+CSPA.part.10
+jaccard: 0.477881
+fmeasure: 0.784015
+purity: 0.784000
+cr_index: 0.607652
+Sillouet: 0.119258
+Distancias ao centro: 2411896.299337
+
+Saidas/MultipleFeatures/MF_30/multipleFeatures_MCLA
+jaccard: 0.545228
+fmeasure: 0.837041
+purity: 0.833500
+cr_index: 0.672808
+Sillouet: 0.201743
+Distancias ao centro: 2045631.425018
+

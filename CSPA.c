@@ -14,9 +14,9 @@ int main(int argc,char **argv){
     int Nvertices,Narestas;
     Nvertices = Nelements;
     Narestas = (Nvertices*Nvertices)/2;
-    int **peso  = MALLOC(int*,Nvertices);
+    unsigned int **peso  = MALLOC(unsigned int*,Nvertices);
     for(int i=0;i<Nvertices;i++)
-        peso[i] = MALLOC(int,Nvertices);
+        peso[i] = MALLOC(unsigned int,Nvertices);
     //int peso[Nvertices][Nvertices];
     int NarestasZero = 0;
     for(int i=0;i<Nelements;i++){

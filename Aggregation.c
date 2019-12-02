@@ -153,6 +153,7 @@ void CalcularDistancias(int **ensemble,double **distancias,int Nelements,int Ncl
 
 
 int main(int argc, char **argv){
+	clock_t start = clock();
 	int Nelements,Nclusters;
 	scanf("%d%d",&Nelements,&Nclusters);
 	int **ensemble = MALLOC(int*,Nclusters);
@@ -175,6 +176,8 @@ int main(int argc, char **argv){
 	
 	int *results = AgglomerativeClustering(clusterings,distancias,Nelements);
 
+	clock_t end = clock();
+
 	char output[200];
 	strcpy(output,argv[2]);
 	strcat(output,"_AGGREGATION");
@@ -182,7 +185,7 @@ int main(int argc, char **argv){
 	if(filePont){
 		for(int i=0;i<Nelements;i++)
 			fprintf(filePont,"%d ",results[i]);
-		fprintf(filePont,"\n");
+		fprintf(filePont,"\nTempo usado: %lf",(double)(end-start)/CLOCKS_PER_SEC);
 		fclose(filePont);
 	}
 	else{

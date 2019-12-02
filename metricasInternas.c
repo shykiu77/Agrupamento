@@ -63,11 +63,6 @@ double CenterDistance(unsigned int Nelements, unsigned int Natributos,double **d
 
 
 double Sillouet(unsigned int Nelements, unsigned int Natributos,double **dataset, unsigned int *clustering, unsigned int NclustersClustering){
-    /*TODO:
-    calcular valor de b(i) para cada elemento.
-    encontrar s(i) com a(i) e b(i).
-    */
-
     unsigned int *NelementsOnCluster = CALLOC(unsigned int,NclustersClustering +1);
     for(int i=0;i<Nelements;i++)
         NelementsOnCluster[clustering[i]]++;

@@ -6,43 +6,51 @@ cr_index: 0.437200
 Sillouet: 0.073508
 Distancias ao centro: 153.659427
 
-Saidas/Subcorel2/Subcorel2_5/subcorel2_CSPA.part.3
-jaccard: 0.354487
-fmeasure: 0.631392
-purity: 0.737500
-cr_index: 0.334491
-Sillouet: 0.053569
-Distancias ao centro: 164.155277
+Saidas/Subcorel2/Subcorel2_5/subcorel2_CSPA.part.4
+jaccard: 0.419594
+fmeasure: 0.697469
+purity: 0.697500
+cr_index: 0.456221
+Sillouet: 0.073585
+Distancias ao centro: 153.339056
 
-Saidas/Subcorel2/Subcorel2_5/subcorel2_HGPA.part.3
-jaccard: 0.228065
-fmeasure: 0.477107
-purity: 0.560000
-cr_index: 0.103673
-Sillouet: -0.000725
-Distancias ao centro: 173.260938
+Saidas/Subcorel2/Subcorel2_5/subcorel2_HGPA.part.4
+jaccard: 0.140290
+fmeasure: 0.287500
+purity: 0.287500
+cr_index: -0.002739
+Sillouet: -0.018065
+Distancias ao centro: 176.752316
 
 Saidas/Subcorel2/Subcorel2_5/subcorel2_IVC
-jaccard: 0.374084
-fmeasure: 0.627799
-purity: 0.742500
-cr_index: 0.353412
-Sillouet: 0.073690
-Distancias ao centro: 159.263126
+jaccard: 0.314988
+fmeasure: 0.570713
+purity: 0.695000
+cr_index: 0.260528
+Sillouet: 0.040930
+Distancias ao centro: 166.277272
 
-Saidas/Subcorel2/Subcorel2_5/subcorel2_LWEA
-jaccard: 0.353476
-fmeasure: 0.615662
-purity: 0.740000
-cr_index: 0.319018
-Sillouet: 0.079457
-Distancias ao centro: 157.194693
+Saidas/Subcorel2/Subcorel2_5/subcorel2_LWEA+Aggregation
+jaccard: 0.405399
+fmeasure: 0.688524
+purity: 0.687500
+cr_index: 0.437200
+Sillouet: 0.073508
+Distancias ao centro: 153.659427
+
+Saidas/Subcorel2/Subcorel2_5/subcorel2_LWEA+CSPA.part.4
+jaccard: 0.394415
+fmeasure: 0.670000
+purity: 0.670000
+cr_index: 0.422390
+Sillouet: 0.071990
+Distancias ao centro: 153.684814
 
 Saidas/Subcorel2/Subcorel2_5/subcorel2_MCLA
-jaccard: 0.318428
-fmeasure: 0.553299
-purity: 0.692500
-cr_index: 0.266589
-Sillouet: 0.071504
-Distancias ao centro: 160.058767
+jaccard: 0.405399
+fmeasure: 0.688524
+purity: 0.687500
+cr_index: 0.437200
+Sillouet: 0.073508
+Distancias ao centro: 153.659427
 

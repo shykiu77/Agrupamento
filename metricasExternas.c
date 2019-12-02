@@ -74,8 +74,7 @@ double fmeasuret(unsigned int *apriori, unsigned int *clustering, unsigned int N
 		
 		f+= (double) count[i]*max;		
 	}
-	free(value);
-	free(count);
+	
 
 	return (double) f/Nelements;
 }
@@ -188,7 +187,6 @@ int main(int argc, char **argv){
         NclustersApriori = MAX(NclustersApriori,apriori[i]);
         NclustersClustering = MAX(NclustersClustering,clustering[i]);
     }
-    
 	double jaccard = jaccard_index(apriori,clustering,Nelements);
 	double fmeasure_index = fmeasuret(apriori,clustering,Nelements,NclustersApriori,NclustersClustering);
 	double purity = purity_index(apriori,clustering,Nelements,NclustersApriori,NclustersClustering);

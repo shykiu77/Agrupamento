@@ -1,7 +1,7 @@
 #include "ensemble.h"
 
 #define NHYPEREDGESMAX 1000000
-#define UBfactor "22"
+#define UBfactor "5"
 
 typedef struct Node{
     struct Node *proximo;
@@ -114,9 +114,8 @@ int main(int argc,char **argv){
         return 1;
     }
 
-    
     printf("Se você esta vendo essa mensagem então provavelmente não tem o shmetis instalado\n");
-    execl("Bin/shmetis","shmetis",fileOutput,argv[1],UBfactor,NULL);
+    execl("Bin/hmetis","hmetis",fileOutput,argv[1],UBfactor,"200","1","3","3","1","0",NULL);
     
     return 0;
 }

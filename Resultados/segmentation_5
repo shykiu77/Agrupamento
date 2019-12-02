@@ -1,0 +1,56 @@
+Saidas/Segmentation/segmentation_5/segmentation_AGGREGATION
+jaccard: 0.388251
+fmeasure: 0.651290
+purity: 0.655411
+cr_index: 0.485621
+Sillouet: 0.199804
+Distancias ao centro: 163527.931877
+
+Saidas/Segmentation/segmentation_5/segmentation_CSPA.part.7
+jaccard: 0.379759
+fmeasure: 0.647373
+purity: 0.647619
+cr_index: 0.475776
+Sillouet: 0.182082
+Distancias ao centro: 167439.028127
+
+Saidas/Segmentation/segmentation_5/segmentation_HGPA.part.7
+jaccard: 0.224789
+fmeasure: 0.498770
+purity: 0.516450
+cr_index: 0.259771
+Sillouet: -0.004097
+Distancias ao centro: 227119.726241
+
+Saidas/Segmentation/segmentation_5/segmentation_IVC
+jaccard: 0.327591
+fmeasure: 0.613659
+purity: 0.777056
+cr_index: 0.381731
+Sillouet: 0.138849
+Distancias ao centro: 197139.324153
+
+Saidas/Segmentation/segmentation_5/segmentation_LWEA+Aggregation
+jaccard: 0.388251
+fmeasure: 0.651290
+purity: 0.655411
+cr_index: 0.485621
+Sillouet: 0.199804
+Distancias ao centro: 163527.931877
+
+Saidas/Segmentation/segmentation_5/segmentation_LWEA+CSPA.part.7
+jaccard: 0.384695
+fmeasure: 0.648035
+purity: 0.648485
+cr_index: 0.481803
+Sillouet: 0.188790
+Distancias ao centro: 165560.440526
+
+Saidas/Segmentation/segmentation_5/segmentation_MCLA
+jaccard: 0.388251
+fmeasure: 0.651290
+purity: 0.655411
+cr_index: 0.485621
+Sillouet: 0.199804
+Distancias ao centro: 163527.931877
+

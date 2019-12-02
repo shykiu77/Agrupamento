@@ -51,7 +51,13 @@ int Reassign(unsigned int **clusterCenters,unsigned int **clusterPoints,unsigned
 }
 
 void RecalculateCenters(unsigned int **clusterCenters,unsigned int **clusterPoints,unsigned int *finalClustering,int Nelements,int Nclusters,int NclustersFinal){
-    int frequency[NclustersFinal][Nclusters][NCLUSTERSMAX];
+    int ***frequency = MALLOC(int**,NclustersFinal);
+    for(int i=0;i<NclustersFinal;i++){
+        frequency[i] = MALLOC(int*,Nclusters);
+        for(int j=0;j<Nclusters;j++)
+            frequency[i][j] = MALLOC(int,NCLUSTERSMAX);
+    }
+    //int frequency[NclustersFinal][Nclusters][NCLUSTERSMAX];
     for(int i=0;i<NclustersFinal;i++)
         for(int j=0;j<Nclusters;j++)
             for(int k=0;k<NCLUSTERSMAX;k++)
@@ -70,7 +76,7 @@ void RecalculateCenters(unsigned int **clusterCenters,unsigned int **clusterPoin
                     freq = frequency[i][j][k];
                     clusterCenters[i][j] = k;
                 }
-        }       
+        }      
 }
 
 unsigned int *IVC(unsigned int **ensemble,int Nclusters,int Nelements,int NclustersFinal){
@@ -83,13 +89,12 @@ unsigned int *IVC(unsigned int **ensemble,int Nclusters,int Nelements,int Nclust
         clusterPoints[i] = MALLOC(unsigned int,Nclusters);
 
     
-    
+
     for(int i=0;i<Nelements;i++)
         for(int j=0;j<Nclusters;j++)
             clusterPoints[i][j] = ensemble[j][i];
     
 
-    
     int initialCentroids[NclustersFinal];
     int Nselected = 0;
     int *selected = CALLOC(int,Nelements);
@@ -100,12 +105,10 @@ unsigned int *IVC(unsigned int **ensemble,int Nclusters,int Nelements,int Nclust
             initialCentroids[Nselected++] = candidate;
         }
     }
-    
     for(int i=0;i<NclustersFinal;i++)
         Copy(clusterCenters[i],clusterPoints[initialCentroids[i]],Nclusters);
     
    
-
     unsigned int *finalClustering = MALLOC(unsigned int,Nelements);
     int hammingSum = Reassign(clusterCenters,clusterPoints,finalClustering,Nelements,Nclusters,NclustersFinal);
     int previousHammingSum = hammingSum + 1;
@@ -119,6 +122,7 @@ unsigned int *IVC(unsigned int **ensemble,int Nclusters,int Nelements,int Nclust
 
 
 int main(int agrc,char **argv){
+    clock_t start = clock();
     srand(time(NULL));
     int Nelements,Nclusters;
 	scanf("%d%d",&Nelements,&Nclusters);
@@ -140,10 +144,9 @@ int main(int agrc,char **argv){
 
     unsigned int *finalClustering = IVC(ensemble,Nclusters,Nelements,NclustersFinal);
 
-
     finalClustering = normalize_clusters(finalClustering,Nelements);
 
-
+    clock_t end = clock();
     
 
     char output[100];
@@ -155,7 +158,7 @@ int main(int agrc,char **argv){
     if(fileOutput){
         for(int i=0;i<Nelements;i++)
             fprintf(fileOutput,"%d ",finalClustering[i]);
-        fprintf(fileOutput,"\n");
+        fprintf(fileOutput,"\nTempo usado: %lf",(double)(end-start)/CLOCKS_PER_SEC);
     }
     else{
         printf("nao foi possivel salver o resultado do IVC\n");

@@ -100,6 +100,7 @@ int *normalize_meta_clusters(int *cluster,int Nelements){
 
 
 int main(int argc,char **argv){
+    clock_t start = clock();
     int Nelementos,Nclusters;
 	scanf("%d%d",&Nelementos,&Nclusters);
     int **ensemble = MALLOC(int*,Nclusters);
@@ -239,6 +240,7 @@ int main(int argc,char **argv){
                 }
                 finalClustering[i] = cluster;
             }
+            clock_t end = clock();
             char programOutput[40];
             strcpy(programOutput,argv[2]);
             strcat(programOutput,"_MCLA");
@@ -247,7 +249,7 @@ int main(int argc,char **argv){
 
             for(int i=0;i<Nelementos;i++)
                 fprintf(pontFile,"%d ",finalClustering[i]);
-            fprintf(pontFile,"\n");
+            fprintf(pontFile,"\nTempo usado: %lf",(double)(end-start)/CLOCKS_PER_SEC);
 
             fclose(pontFile);
 

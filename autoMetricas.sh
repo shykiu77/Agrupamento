@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #args: local dos arquivos, numero de elementos, local do cluster verdadeiro, local da saida do script, numero de atributos e arquivo do dataset.
-#Ex.: ./autoMetricas.sh Saidas/Subcorel2/Subcorel2_5/  400 Entradas/Subcorel2/true_clustering  Resultados/subcorel2_5 338 Entradas/Subcorel2/subcorel2_attributes
+#Ex.: ./autoMetricas.sh Saidas/Segmentation/segmentation_5/ 2310 Entradas/Segmentation/true_clustering  Resultados/segmentation_5 19 Entradas/Segmentation/dataset
 
 for filename in $1*; do
     echo $filename >> $4 
