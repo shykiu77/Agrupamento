@@ -161,6 +161,6 @@ int main(int argc, char **argv){
     double s = Sillouet( Nelements, Natributos,dataset, clustering, NclustersClustering);
     double d = CenterDistance(Nelements, Natributos,dataset, clustering, NclustersClustering);
 	printf("Sillouet: %lf\n",s);
-    printf("Distancias ao centro: %lf\n",d);
+    printf("Distancias_ao_centro: %lf\n",d);
     return 0;
 }
