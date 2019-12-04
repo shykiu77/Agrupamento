@@ -140,13 +140,13 @@ int main(int argc, char *argv[]) {
 	ofstream file1(fileName1);
 
 
-	//for(int i=0; i<5; i++){
-		//for (int j = 0; j < 15; j++) {
-			printf("\nEta: %f, lambda: %f", eta[0], lambda[0]);
-			utils.run(medias, desvios, indices, sol, &bfobj, bsol, &bestbfobj, nbRep, nbObj, data, k, p, matrizes, NULL, &file1, apriori, clustering,eta[0],lambda[0]);
-			writeResultsInFile("TWKM", &file1, nbObj, k, bfobj, medias, desvios, NULL, p, k, NULL, 0, nbObj, apriori, clustering,eta[0],lambda[0]);
-		//}
-	//}
+	for(int i=0; i<5; i++){
+		for (int j = 0; j < 6; j++) {
+			printf("\nEta: %f, lambda: %f", eta[j], lambda[i]);
+			utils.run(medias, desvios, indices, sol, &bfobj, bsol, &bestbfobj, nbRep, nbObj, data, k, p, matrizes, NULL, &file1, apriori, clustering,eta[j],lambda[i]);
+			//writeResultsInFile("TWKM", &file1, nbObj, k, bfobj, medias, desvios, NULL, p, k, NULL, 0, nbObj, apriori, clustering,eta[j],lambda[i]);
+		}
+	}
 
 	file1.close();
 	return 1;

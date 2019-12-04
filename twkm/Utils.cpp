@@ -62,11 +62,11 @@ void Utils::run(double *medias, double *desvios, double **indices, unsigned int 
 		indices[8][z] = indices[7][z] / 60;
 	}
 
-	for (unsigned int i = 0; i < 7; i++) {
+	/*for (unsigned int i = 0; i < 7; i++) {
 		*file1 << "\n" << externos[i] << "\n";
 		for (unsigned int j = 0; j < nbRep; j++)
 			*file1 << indices[i][j] << "\n";
-	}
+	}*/
 
 	/*file1 << "\nBest representatives: " << "\n";
 	for (unsigned int i = 0; i < k; i++) {
@@ -96,11 +96,12 @@ void Utils::run(double *medias, double *desvios, double **indices, unsigned int 
 	for (unsigned int j = 0; j<nbObj; j++) 
 		finalclustering[j] = bsol[j];
 
-	*file1 << "\nBest partition: " << "\n";
+	//*file1 << "\nBest partition: " << "\n";
 	for (unsigned int j = 0; j < nbObj; j++)
 	  *file1 << finalclustering[j] << " ";
+	*file1 << "\n";
 
-	*file1 << "\n\nConfusion matrix: " << "\n";
+	/**file1 << "\n\nConfusion matrix: " << "\n";
 	unsigned int nij;
 	for(int i=0; i<k; i++) {
 			for(int j=0; j<k; j++) {
@@ -111,7 +112,7 @@ void Utils::run(double *medias, double *desvios, double **indices, unsigned int 
 				*file1 << nij << " " ;
 			}
 		*file1 << "\n";
-	}
+	}*/
 }
 
 
