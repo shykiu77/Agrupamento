@@ -1,0 +1,56 @@
+Saidas/Segmentation/segmentation_TWKM_30/segmentation_TWKM_30_AGGREGATION
+jaccard: 0.325194
+fmeasure: 0.578206
+purity: 0.711688
+cr_index: 0.385960
+Sillouet: -0.007263
+Distancias_ao_centro: 204547.214538
+
+Saidas/Segmentation/segmentation_TWKM_30/segmentation_TWKM_30_CSPA.part.7
+jaccard: 0.255696
+fmeasure: 0.530253
+purity: 0.530303
+cr_index: 0.308763
+Sillouet: 0.053549
+Distancias_ao_centro: 214426.541810
+
+Saidas/Segmentation/segmentation_TWKM_30/segmentation_TWKM_30_HGPA.part.7
+jaccard: 0.232208
+fmeasure: 0.507126
+purity: 0.515584
+cr_index: 0.270849
+Sillouet: -0.005717
+Distancias_ao_centro: 227142.807186
+
+Saidas/Segmentation/segmentation_TWKM_30/segmentation_TWKM_30_IVC
+jaccard: 0.305859
+fmeasure: 0.558518
+purity: 0.704329
+cr_index: 0.356689
+Sillouet: -0.053738
+Distancias_ao_centro: 228902.821023
+
+Saidas/Segmentation/segmentation_TWKM_30/segmentation_TWKM_30_LWEA+Aggregation
+jaccard: 0.298056
+fmeasure: 0.567909
+purity: 0.660173
+cr_index: 0.356018
+Sillouet: 0.010603
+Distancias_ao_centro: 215525.006086
+
+Saidas/Segmentation/segmentation_TWKM_30/segmentation_TWKM_30_LWEA+CSPA.part.7
+jaccard: 0.271833
+fmeasure: 0.544678
+purity: 0.544156
+cr_index: 0.332331
+Sillouet: 0.056352
+Distancias_ao_centro: 205860.050831
+
+Saidas/Segmentation/segmentation_TWKM_30/segmentation_TWKM_30_MCLA
+jaccard: 0.323881
+fmeasure: 0.577852
+purity: 0.712554
+cr_index: 0.383737
+Sillouet: 0.049301
+Distancias_ao_centro: 204919.348387
+
