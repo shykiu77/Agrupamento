@@ -1,0 +1,6 @@
+jaccard: 0.320541
+fmeasure: 0.598858
+purity: 0.673463
+cr_index: 0.383207
+sillouet: 0.325230
+distancias_aos_centros: 152198.937874
