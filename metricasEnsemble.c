@@ -66,7 +66,7 @@ int main(int argc, char**argv){
     if(fork() == 0){
         char charNelementos[10];
         sprintf(charNelementos,"%d",Nelementos);
-        execl("/home/carlos/VScode Projects/Agrupamento/autoMetricas.sh","autoMetricas","./temp/",charNelementos,argv[2],"./temp/saida",argv[4],argv[3],(char*) NULL);
+        execl("/home/carlos/VScode Projects/Agrupamento/Scripts/autoMetricas.sh","autoMetricas","./temp/",charNelementos,argv[2],"./temp/saida",argv[4],argv[3],(char*) NULL);
         printf("%s\n",strerror(errno));
         
     }
@@ -106,15 +106,9 @@ int main(int argc, char**argv){
     media.jaccard /= Nclusterings;
     media.purity /= Nclusterings;
     media.sillouet /= Nclusterings;
-
-    FILE *saida = fopen(argv[5],"w");
-    fprintf(saida,"jaccard: %lf\n",media.jaccard);
-    fprintf(saida,"fmeasure: %lf\n",media.fmeasure_index);
-    fprintf(saida,"purity: %lf\n",media.purity);
-    fprintf(saida,"cr_index: %lf\n",media.cr);
-    fprintf(saida,"sillouet: %lf\n",media.sillouet);
-    fprintf(saida,"distancias_aos_centros: %lf\n",media.dist);
-    fclose(saida);
+    
+   
+   
     system("rm -rf ./temp");
     for(int i=0;i<Nclusterings;i++){
         printf("%lf\n",metricas[i]->jaccard);
@@ -125,5 +119,19 @@ int main(int argc, char**argv){
         printf("%lf\n",metricas[i]->dist);
         printf("----------------\n");
     }
+    
+    FILE *saida = fopen(argv[5],"w");
+    if(saida == NULL){
+        printf("Não foi possível criar o arquivo\n");
+        return 1;
+    }
+    fprintf(saida,"jaccard: %lf\n",media.jaccard);
+    fprintf(saida,"fmeasure: %lf\n",media.fmeasure_index);
+    fprintf(saida,"purity: %lf\n",media.purity);
+    fprintf(saida,"cr_index: %lf\n",media.cr);
+    fprintf(saida,"sillouet: %lf\n",media.sillouet);
+    fprintf(saida,"distancias_aos_centros: %lf\n",media.dist);
+    //fclose(saida);
+
     return 0;
 }
