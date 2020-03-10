@@ -1,0 +1,24 @@
+Saidas/Segmentation/Rene/DB/ENSEMBLE-image-DB-GB-MAXPSO-RWL_10_20_50_5_2.000000_2.000000_0.400000_0.900000_7.txt/result_AGGREGATION
+jaccard: 0.259475
+fmeasure: 0.546486
+purity: 0.455411
+cr_index: 0.343232
+Sillouet: 0.049193
+Distancias_ao_centro: 885.102306
+
+Saidas/Segmentation/Rene/DB/ENSEMBLE-image-DB-GB-MAXPSO-RWL_10_20_50_5_2.000000_2.000000_0.400000_0.900000_7.txt/result_CSPA.part.7
+jaccard: 0.226828
+fmeasure: 0.496319
+purity: 0.496104
+cr_index: 0.265062
+Sillouet: 0.070503
+Distancias_ao_centro: 1324.250181
+
+Saidas/Segmentation/Rene/DB/ENSEMBLE-image-DB-GB-MAXPSO-RWL_10_20_50_5_2.000000_2.000000_0.400000_0.900000_7.txt/result_MCLA
+jaccard: 0.304158
+fmeasure: 0.563846
+purity: 0.677056
+cr_index: 0.362785
+Sillouet: 0.136632
+Distancias_ao_centro: 1223.346433
+

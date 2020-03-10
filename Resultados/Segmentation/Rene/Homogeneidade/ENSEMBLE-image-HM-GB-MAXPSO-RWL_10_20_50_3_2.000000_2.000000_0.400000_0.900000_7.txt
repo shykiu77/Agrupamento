@@ -1,0 +1,24 @@
+Saidas/Segmentation/Rene/Homogeneidade/ENSEMBLE-image-HM-GB-MAXPSO-RWL_10_20_50_3_2.000000_2.000000_0.400000_0.900000_7.txt/result_AGGREGATION
+jaccard: 0.388251
+fmeasure: 0.651290
+purity: 0.655411
+cr_index: 0.485621
+Sillouet: 0.296905
+Distancias_ao_centro: 898.294633
+
+Saidas/Segmentation/Rene/Homogeneidade/ENSEMBLE-image-HM-GB-MAXPSO-RWL_10_20_50_3_2.000000_2.000000_0.400000_0.900000_7.txt/result_CSPA.part.7
+jaccard: 0.360578
+fmeasure: 0.626935
+purity: 0.626407
+cr_index: 0.451946
+Sillouet: 0.216799
+Distancias_ao_centro: 1007.023452
+
+Saidas/Segmentation/Rene/Homogeneidade/ENSEMBLE-image-HM-GB-MAXPSO-RWL_10_20_50_3_2.000000_2.000000_0.400000_0.900000_7.txt/result_MCLA
+jaccard: 0.388251
+fmeasure: 0.651290
+purity: 0.655411
+cr_index: 0.485621
+Sillouet: 0.296905
+Distancias_ao_centro: 898.294633
+

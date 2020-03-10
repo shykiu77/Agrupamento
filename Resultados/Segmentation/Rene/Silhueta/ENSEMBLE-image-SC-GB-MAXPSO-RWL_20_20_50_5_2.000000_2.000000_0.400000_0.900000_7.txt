@@ -1,0 +1,24 @@
+Saidas/Segmentation/Rene/Silhueta/ENSEMBLE-image-SC-GB-MAXPSO-RWL_20_20_50_5_2.000000_2.000000_0.400000_0.900000_7.txt/result_AGGREGATION
+jaccard: 0.329859
+fmeasure: 0.594482
+purity: 0.587879
+cr_index: 0.418310
+Sillouet: 0.117030
+Distancias_ao_centro: 868.259044
+
+Saidas/Segmentation/Rene/Silhueta/ENSEMBLE-image-SC-GB-MAXPSO-RWL_20_20_50_5_2.000000_2.000000_0.400000_0.900000_7.txt/result_CSPA.part.7
+jaccard: 0.286345
+fmeasure: 0.571546
+purity: 0.571429
+cr_index: 0.353021
+Sillouet: 0.134771
+Distancias_ao_centro: 1217.459804
+
+Saidas/Segmentation/Rene/Silhueta/ENSEMBLE-image-SC-GB-MAXPSO-RWL_20_20_50_5_2.000000_2.000000_0.400000_0.900000_7.txt/result_MCLA
+jaccard: 0.360283
+fmeasure: 0.641014
+purity: 0.711688
+cr_index: 0.439398
+Sillouet: 0.228573
+Distancias_ao_centro: 1057.636432
+
