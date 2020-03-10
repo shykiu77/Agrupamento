@@ -1,0 +1,56 @@
+Saidas/Segmentation/Rene/Homogenidade/ENSEMBLE-image-HM-GB-MAXPSO-RWL_10_20_50_3_2.000000_2.000000_0.400000_0.900000_7.txt/result_AGGREGATION
+jaccard: 0.388251
+fmeasure: 0.651290
+purity: 0.655411
+cr_index: 0.485621
+Sillouet: 0.199804
+Distancias_ao_centro: 163527.931877
+
+Saidas/Segmentation/Rene/Homogenidade/ENSEMBLE-image-HM-GB-MAXPSO-RWL_10_20_50_3_2.000000_2.000000_0.400000_0.900000_7.txt/result_CSPA.part.7
+jaccard: 0.360578
+fmeasure: 0.626935
+purity: 0.626407
+cr_index: 0.451946
+Sillouet: 0.127976
+Distancias_ao_centro: 182010.657035
+
+Saidas/Segmentation/Rene/Homogenidade/ENSEMBLE-image-HM-GB-MAXPSO-RWL_10_20_50_3_2.000000_2.000000_0.400000_0.900000_7.txt/result_HGPA.part.7
+jaccard: 0.301068
+fmeasure: 0.586643
+purity: 0.592208
+cr_index: 0.372260
+Sillouet: 0.147935
+Distancias_ao_centro: 177373.154010
+
+Saidas/Segmentation/Rene/Homogenidade/ENSEMBLE-image-HM-GB-MAXPSO-RWL_10_20_50_3_2.000000_2.000000_0.400000_0.900000_7.txt/result_IVC
+jaccard: 0.290759
+fmeasure: 0.567346
+purity: 0.593939
+cr_index: 0.355394
+Sillouet: 0.029094
+Distancias_ao_centro: 232640.257559
+
+Saidas/Segmentation/Rene/Homogenidade/ENSEMBLE-image-HM-GB-MAXPSO-RWL_10_20_50_3_2.000000_2.000000_0.400000_0.900000_7.txt/result_LWEA+Aggregation
+jaccard: 0.329321
+fmeasure: 0.632253
+purity: 0.593939
+cr_index: 0.417491
+Sillouet: 0.119641
+Distancias_ao_centro: 180235.255320
+
+Saidas/Segmentation/Rene/Homogenidade/ENSEMBLE-image-HM-GB-MAXPSO-RWL_10_20_50_3_2.000000_2.000000_0.400000_0.900000_7.txt/result_LWEA+CSPA.part.7
+jaccard: 0.377332
+fmeasure: 0.641699
+purity: 0.641126
+cr_index: 0.472798
+Sillouet: 0.180016
+Distancias_ao_centro: 168496.630894
+
+Saidas/Segmentation/Rene/Homogenidade/ENSEMBLE-image-HM-GB-MAXPSO-RWL_10_20_50_3_2.000000_2.000000_0.400000_0.900000_7.txt/result_MCLA
+jaccard: 0.388251
+fmeasure: 0.651290
+purity: 0.655411
+cr_index: 0.485621
+Sillouet: 0.199804
+Distancias_ao_centro: 163527.931877
+
