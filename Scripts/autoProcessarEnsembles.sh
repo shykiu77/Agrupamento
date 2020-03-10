@@ -8,7 +8,6 @@ for clustering in $2*; do
     ./Scripts/autoAlgoritmos.sh $1 $clustering $3 $folderName/result
     rm $folderName/*CSPA
     rm $folderName/*tempFile*
-    rm $folderName/*HGPA
     Natributos=$(<$8)
     Bin/metricasEnsemble $clustering $5 $6 $Natributos $9/"$(echo $clustering | cut -d'/' -f5)""_medio"
 done

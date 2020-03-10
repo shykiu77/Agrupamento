@@ -1,0 +1,21 @@
+Saidas/Subcorel2/Rene/Normal/ENSEMBLE-SubCorel2-HM-GB-MAXPSO-RWL_5_20_50_3_2.000000_2.000000_0.400000_0.900000_4.txt/result_AGGREGATION
+jaccard: 0.405399
+fmeasure: 0.688524
+purity: 0.687500
+cr_index: 0.437200
+Sillouet: 0.116381
+Distancias_ao_centro: 996.866926
+
+Saidas/Subcorel2/Rene/Normal/ENSEMBLE-SubCorel2-HM-GB-MAXPSO-RWL_5_20_50_3_2.000000_2.000000_0.400000_0.900000_4.txt/result_CSPA.part.4
+jaccard: 0.419594
+fmeasure: 0.697469
+purity: 0.697500
+cr_index: 0.456221
+Sillouet: 0.119930
+Distancias_ao_centro: 995.116093
+
+Saidas/Subcorel2/Rene/Normal/ENSEMBLE-SubCorel2-HM-GB-MAXPSO-RWL_5_20_50_3_2.000000_2.000000_0.400000_0.900000_4.txt/result_IVC
+jaccard: 0.248120
+fmeasure: 0.400000
+purity: 1.000000
+cr_index: 0.000000

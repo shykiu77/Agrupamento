@@ -49,10 +49,11 @@ int main(int argc, char**argv){
     Metricas **metricas = MALLOC(Metricas*,Nclusterings);
     for(int i=0;i<Nclusterings;i++)
         metricas[i] = MALLOC(Metricas,1);
-
+    
+    mkdir("./temp",0700);
     for(int i=0;i<Nclusterings;i++){
         char filename[40];
-        mkdir("./temp",0700);
+        
         strcpy(filename,"./temp/clust");
         char num[10];
         sprintf(num,"%d",i);
@@ -63,6 +64,7 @@ int main(int argc, char**argv){
         fprintf(temp,"\n");
         fclose(temp);
     }
+
     if(fork() == 0){
         char charNelementos[10];
         sprintf(charNelementos,"%d",Nelementos);
@@ -129,9 +131,9 @@ int main(int argc, char**argv){
     fprintf(saida,"fmeasure: %lf\n",media.fmeasure_index);
     fprintf(saida,"purity: %lf\n",media.purity);
     fprintf(saida,"cr_index: %lf\n",media.cr);
-    fprintf(saida,"sillouet: %lf\n",media.sillouet);
-    fprintf(saida,"distancias_aos_centros: %lf\n",media.dist);
-    //fclose(saida);
+    fprintf(saida,"Sillouet: %lf\n",media.sillouet);
+    fprintf(saida,"Distancias_ao_centro: %lf\n",media.dist);
+    fclose(saida);
 
     return 0;
 }

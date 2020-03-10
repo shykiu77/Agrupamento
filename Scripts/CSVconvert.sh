@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-paste "$@" | grep "sillouet" | sed 's/sillouet: //g' | sed  's/\t/,/g'
+paste "$@" | grep "Distancias_ao_centro" | sed 's/Distancias_ao_centro: //g' | sed  's/\t/,/g'
 
 echo ' '
 
